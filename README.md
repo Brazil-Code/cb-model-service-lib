@@ -6,4 +6,4 @@
 
 ---
 
-Library of models/repositories that will be availabe for the microservices
+Library of models/repositories that will be availabe for the microservices of the project <b>Clean Budget</b>
