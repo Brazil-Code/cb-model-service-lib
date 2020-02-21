@@ -15,7 +15,7 @@ import br.com.brazilcode.cb.libs.model.Area;
  */
 public interface AreaRepository extends PagingAndSortingRepository<Area, Long> {
 
-	@Query("SELECT a FROM Area a WHERE a.name LIKE %:name%")
+	@Query("SELECT a FROM Area a WHERE LOWER(a.name) LIKE LOWER(:name)")
 	Area findByName(@Param("name") final String name);
 
 }
