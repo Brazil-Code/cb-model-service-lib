@@ -24,14 +24,14 @@ public class Area {
 			@Parameter(name = "increment_size", value = "1") })
 	private int id;
 
-	@NotEmpty
+	@NotEmpty(message = "Budget reference is mandatory!")
 	private Budget budget;
 
-	@NotEmpty
+	@NotEmpty(message = "Name is mandatory!")
 	private String name;
 
-	@NotEmpty
-	private boolean disabled;
+	@NotEmpty(message = "Flag disabled is mandatory!")
+	private boolean disabled = false;
 
 	public int getId() {
 		return id;

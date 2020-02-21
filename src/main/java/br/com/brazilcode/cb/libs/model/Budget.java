@@ -29,34 +29,34 @@ public class Budget {
 			@Parameter(name = "increment_size", value = "1") })
 	private int id;
 
-	@NotEmpty
+	@NotEmpty(message = "Service type is mandatory!")
 	@Column(length = 255)
 	private String serviceType;
 
-	@NotEmpty
+	@NotEmpty(message = "Budgeted value is mandatory!")
 	private float budgeted;
 
-	@NotEmpty
+	@NotEmpty(message = "Effective value is mandatory!")
 	private float effective;
 
-	@NotEmpty
+	@NotEmpty(message = "Management account is mandatory!")
 	@Column(length = 255)
 	private String managementAccount;
 
-	@NotEmpty
+	@NotEmpty(message = "Department is mandatory!")
 	@Column(length = 255)
 	private String department;
 
-	@NotEmpty
+	@NotEmpty(message = "Year is mandatory!")
 	private String year;
 
-	@NotEmpty
-	private boolean disabled;
+	@NotEmpty(message = "Flag disabled is mandatory!")
+	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@NotEmpty
+	@NotEmpty(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
