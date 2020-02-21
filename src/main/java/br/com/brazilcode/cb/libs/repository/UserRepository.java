@@ -22,8 +22,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param user
 	 * @return
 	 */
-	@Query("SELECT u FROM User u WHERE u.user = :username")
-	User findByUsername(@Param("user") final String username);
+	@Query("SELECT u FROM User u WHERE LOWER(u.username) LIKE LOWER(:username)")
+	User findByUsername(@Param("username") final String username);
 
 	/**
 	 * Método responsável por buscar um User pelo seu e-mail.
@@ -32,7 +32,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param email
 	 * @return
 	 */
-	@Query("SELECT u FROM User u WHERE u.email = :email")
+	@Query("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(:email)")
 	User findByEmail(@Param("email") final String email);
 
 }
