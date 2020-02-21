@@ -1,33 +1,27 @@
 package br.com.brazilcode.cb.libs.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "Profile" do banco de dados.
+ * Classe responsável por mapear a tabela "Functionality" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 20:54:04
+ * @since 21 de fev de 2020 13:49:14
  * @version 1.0
  */
-public class Profile {
+public class Functionality {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_seq")
-	@GenericGenerator(name = "profile_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
-			@Parameter(name = "sequence_name", value = "profile_seq"), @Parameter(name = "initial_value", value = "1"),
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "functionality_seq")
+	@GenericGenerator(name = "functionality_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+			@Parameter(name = "sequence_name", value = "functionality_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
 	private int id;
 
@@ -35,13 +29,14 @@ public class Profile {
 	@Column(length = 50)
 	private String description;
 
+	@NotEmpty(message = "URI is mandatory!")
+	@Column(length = 150)
+	private String uri;
+
+	private int action;
+
 	@NotEmpty(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
-
-	@ManyToMany
-	@JoinTable(name = "profile_functionality", joinColumns = { @JoinColumn(name = "id_profile") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_functionality") })
-	private Set<Functionality> functionalities = new HashSet<>();
 
 	public int getId() {
 		return id;
@@ -59,6 +54,22 @@ public class Profile {
 		this.description = description;
 	}
 
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+
+	public int getAction() {
+		return action;
+	}
+
+	public void setAction(int action) {
+		this.action = action;
+	}
+
 	public boolean isDisabled() {
 		return disabled;
 	}
@@ -67,22 +78,15 @@ public class Profile {
 		this.disabled = disabled;
 	}
 
-	public Set<Functionality> getFunctionalities() {
-		return functionalities;
-	}
-
-	public void setFunctionalities(Set<Functionality> functionalities) {
-		this.functionalities = functionalities;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + action;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + ((functionalities == null) ? 0 : functionalities.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((uri == null) ? 0 : uri.hashCode());
 		return result;
 	}
 
@@ -94,7 +98,9 @@ public class Profile {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profile other = (Profile) obj;
+		Functionality other = (Functionality) obj;
+		if (action != other.action)
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -102,12 +108,12 @@ public class Profile {
 			return false;
 		if (disabled != other.disabled)
 			return false;
-		if (functionalities == null) {
-			if (other.functionalities != null)
-				return false;
-		} else if (!functionalities.equals(other.functionalities))
-			return false;
 		if (id != other.id)
+			return false;
+		if (uri == null) {
+			if (other.uri != null)
+				return false;
+		} else if (!uri.equals(other.uri))
 			return false;
 		return true;
 	}

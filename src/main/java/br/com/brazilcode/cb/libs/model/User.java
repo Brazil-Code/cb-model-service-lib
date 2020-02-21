@@ -22,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "USER" do banco de dados.
+ * Classe responsável por mapear a tabela "User" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 19:46:28
@@ -41,29 +41,29 @@ public class User {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Area area;
 
-	@NotEmpty
+	@NotEmpty(message = "Username is mandatory!")
 	@Column(length = 50)
 	private String username;
 
-	@NotEmpty
+	@NotEmpty(message = "Password is mandatory!")
 	@Column(length = 50)
 	private String password;
 
-	@NotEmpty
+	@NotEmpty(message = "First name is mandatory!")
 	@Column(length = 30)
 	private String firstName;
 
 	@Column(length = 30)
 	private String lastName;
 
-	@NotEmpty
+	@NotEmpty(message = "E-mail is mandatory!")
 	@Column(length = 100)
 	private String email;
 
 	private String token;
 
-	@NotEmpty
-	private boolean disabled;
+	@NotEmpty(message = "Flag disabled is mandatory!")
+	private boolean disabled = false;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_profile", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
@@ -73,7 +73,7 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Timestamp updatedAt;
 
-	@NotEmpty
+	@NotEmpty(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Timestamp createdAt;
 

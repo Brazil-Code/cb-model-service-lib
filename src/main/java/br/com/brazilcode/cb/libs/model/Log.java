@@ -29,14 +29,13 @@ public class Log {
 			@Parameter(name = "increment_size", value = "1") })
 	private int Id;
 
-	@NotEmpty
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "id") })
 	private User user;
 
 	private String ip;
 
-	@NotEmpty
+	@NotEmpty(message = "Description is mandatory!")
 	@Column(length = 255)
 	private String description;
 
