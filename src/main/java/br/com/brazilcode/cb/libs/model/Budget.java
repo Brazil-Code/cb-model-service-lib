@@ -1,6 +1,6 @@
 package br.com.brazilcode.cb.libs.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
