@@ -17,7 +17,7 @@ import org.hibernate.annotations.Parameter;
  * @since 21 de fev de 2020 13:49:14
  * @version 1.0
  */
-@Entity
+@Entity(name = "functionality")
 public class Functionality {
 
 	@Id
