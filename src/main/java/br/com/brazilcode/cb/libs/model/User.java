@@ -1,6 +1,6 @@
 package br.com.brazilcode.cb.libs.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -71,11 +71,11 @@ public class User {
 	private Set<Profile> profiles = new HashSet<>();
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Timestamp updatedAt;
+	private Date updatedAt;
 
 	@NotEmpty(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Timestamp createdAt;
+	private Date createdAt;
 
 	public int getId() {
 		return id;
@@ -149,19 +149,27 @@ public class User {
 		this.disabled = disabled;
 	}
 
-	public Timestamp getUpdatedAt() {
+	public Set<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(Set<Profile> profiles) {
+		this.profiles = profiles;
+	}
+
+	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Timestamp updatedAt) {
+	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
-	public Timestamp getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -169,6 +177,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((area == null) ? 0 : area.hashCode());
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
@@ -176,6 +185,7 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
 		result = prime * result + ((token == null) ? 0 : token.hashCode());
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -191,6 +201,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (area == null) {
+			if (other.area != null)
+				return false;
+		} else if (!area.equals(other.area))
+			return false;
 		if (createdAt == null) {
 			if (other.createdAt != null)
 				return false;
@@ -219,6 +234,11 @@ public class User {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
+			return false;
+		if (profiles == null) {
+			if (other.profiles != null)
+				return false;
+		} else if (!profiles.equals(other.profiles))
 			return false;
 		if (token == null) {
 			if (other.token != null)
