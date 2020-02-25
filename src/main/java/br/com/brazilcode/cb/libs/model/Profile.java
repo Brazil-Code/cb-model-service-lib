@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:54:04
  * @version 1.0
  */
+@Entity
 public class Profile {
 
 	@Id
