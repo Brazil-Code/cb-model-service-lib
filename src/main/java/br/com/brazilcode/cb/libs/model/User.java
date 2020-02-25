@@ -28,7 +28,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 19:46:28
  * @version 1.0
  */
-@Entity(name = "USER")
+@Entity(name = "sys_user")
 public class User {
 
 	@Id
@@ -68,7 +68,7 @@ public class User {
 	@NotEmpty(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_profile", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_profile") })
 	private Set<Profile> profiles = new HashSet<>();

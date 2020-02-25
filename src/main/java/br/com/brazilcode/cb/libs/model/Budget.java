@@ -21,7 +21,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:43:12
  * @version 1.0
  */
-@Entity
+@Entity(name = "budget")
 public class Budget {
 
 	@Id

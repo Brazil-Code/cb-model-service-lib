@@ -23,7 +23,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:54:04
  * @version 1.0
  */
-@Entity
+@Entity(name = "profile")
 public class Profile {
 
 	@Id

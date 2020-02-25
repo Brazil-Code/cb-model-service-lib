@@ -22,7 +22,7 @@ public interface ProfileRepository extends PagingAndSortingRepository<Profile, L
 	 * @param description
 	 * @return
 	 */
-	@Query("SELECT p FROM Profile p WHERE LOWER(p.description) LIKE LOWER(:description)")
+	@Query("SELECT p FROM profile p WHERE LOWER(p.description) LIKE LOWER(:description)")
 	Profile findByDescription(@Param("description") final String description);
 
 }

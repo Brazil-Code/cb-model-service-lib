@@ -18,7 +18,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:39:45
  * @version 1.0s
  */
-@Entity
+@Entity(name = "area")
 public class Area {
 
 	@Id

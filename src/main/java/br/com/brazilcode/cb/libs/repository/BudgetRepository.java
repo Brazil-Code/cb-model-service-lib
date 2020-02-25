@@ -24,7 +24,7 @@ public interface BudgetRepository extends PagingAndSortingRepository<Budget, Lon
 	 * @param department
 	 * @return
 	 */
-	@Query("SELECT b FROM Budget b WHERE LOWER(b.department) LIKE LOWER(:department)")
+	@Query("SELECT b FROM budget b WHERE LOWER(b.department) LIKE LOWER(:department)")
 	List<Budget> findByDepartment(@Param("department") final String department);
 
 }
