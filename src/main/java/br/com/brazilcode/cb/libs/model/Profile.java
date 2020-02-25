@@ -31,7 +31,7 @@ public class Profile {
 	@GenericGenerator(name = "profile_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
 			@Parameter(name = "sequence_name", value = "profile_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
-	private int id;
+	private Long id;
 
 	@NotEmpty(message = "Description is mandatory!")
 	@Column(length = 50)
@@ -45,11 +45,11 @@ public class Profile {
 			@JoinColumn(name = "id_functionality") })
 	private Set<Functionality> functionalities = new HashSet<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -84,7 +84,7 @@ public class Profile {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
 		result = prime * result + ((functionalities == null) ? 0 : functionalities.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -109,7 +109,10 @@ public class Profile {
 				return false;
 		} else if (!functionalities.equals(other.functionalities))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

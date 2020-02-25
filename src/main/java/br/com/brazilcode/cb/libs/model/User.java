@@ -22,13 +22,13 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "User" do banco de dados.
+ * Classe responsável por mapear a tabela "USER" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 19:46:28
  * @version 1.0
  */
-@Entity(name = "User")
+@Entity(name = "USER")
 public class User {
 
 	@Id
@@ -36,9 +36,12 @@ public class User {
 	@GenericGenerator(name = "user_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
 			@Parameter(name = "sequence_name", value = "user_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
-	private int id;
+	@Column(name = "id")
+	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@NotEmpty(message = "Area reference is mandatory!")
+	@ManyToOne
+	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
 
 	@NotEmpty(message = "Username is mandatory!")
@@ -77,11 +80,11 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -182,7 +185,7 @@ public class User {
 		result = prime * result + (disabled ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
@@ -223,7 +226,10 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)

@@ -25,7 +25,7 @@ public class Functionality {
 	@GenericGenerator(name = "functionality_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
 			@Parameter(name = "sequence_name", value = "functionality_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
-	private int id;
+	private Long id;
 
 	@NotEmpty(message = "Description is mandatory!")
 	@Column(length = 50)
@@ -40,11 +40,11 @@ public class Functionality {
 	@NotEmpty(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -87,7 +87,7 @@ public class Functionality {
 		result = prime * result + action;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((uri == null) ? 0 : uri.hashCode());
 		return result;
 	}
@@ -110,7 +110,10 @@ public class Functionality {
 			return false;
 		if (disabled != other.disabled)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (uri == null) {
 			if (other.uri != null)
