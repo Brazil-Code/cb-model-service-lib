@@ -1,5 +1,7 @@
 package br.com.brazilcode.cb.libs.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -40,6 +44,10 @@ public class Log {
 	@NotEmpty(message = "Description is mandatory!")
 	@Column(length = 255)
 	private String description;
+
+	@NotEmpty(message = "Timestamp is mandatory!")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timestamp;
 
 	public int getId() {
 		return Id;
@@ -73,6 +81,14 @@ public class Log {
 		this.description = description;
 	}
 
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,6 +96,7 @@ public class Log {
 		result = prime * result + Id;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((ip == null) ? 0 : ip.hashCode());
+		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -104,6 +121,11 @@ public class Log {
 			if (other.ip != null)
 				return false;
 		} else if (!ip.equals(other.ip))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
 			return false;
 		if (user == null) {
 			if (other.user != null)
