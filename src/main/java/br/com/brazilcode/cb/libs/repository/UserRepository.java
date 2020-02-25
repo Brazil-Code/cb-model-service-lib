@@ -24,7 +24,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param user
 	 * @return
 	 */
-	@Query("SELECT u FROM 'USER' u WHERE LOWER(u.username) LIKE LOWER(:username) AND u.disabled = 0")
+	@Query("SELECT u FROM USER u WHERE LOWER(u.username) LIKE LOWER(:username) AND u.disabled = 0")
 	User findByUsername(@Param("username") final String username);
 
 	/**
@@ -35,7 +35,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param password
 	 * @return
 	 */
-	@Query("SELECT u FROM 'USER' u WHERE u.username = :username AND u.password = :password AND u.disabled = 0")
+	@Query("SELECT u FROM USER u WHERE u.username = :username AND u.password = :password AND u.disabled = 0")
 	User findByUsernameAndPassword(@Param("username") final String username, @Param("password") final String password);
 
 	/**
@@ -45,7 +45,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param email
 	 * @return
 	 */
-	@Query("SELECT u FROM 'USER' u WHERE LOWER(u.email) LIKE LOWER(:email) AND u.disabled = 0")
+	@Query("SELECT u FROM USER u WHERE LOWER(u.email) LIKE LOWER(:email) AND u.disabled = 0")
 	User findByEmail(@Param("email") final String email);
 
 	/**
@@ -56,7 +56,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @param id
 	 */
 	@Modifying
-	@Query("UPDATE 'USER' u SET u.token = :token WHERE u.id = :id")
+	@Query("UPDATE USER u SET u.token = :token WHERE u.id = :id")
 	@Transactional
 	void updateTokenById(@Param("token") final String token, @Param("id") final Long id);
 
