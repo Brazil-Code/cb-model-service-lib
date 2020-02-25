@@ -1,5 +1,6 @@
 package br.com.brazilcode.cb.libs.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:39:45
  * @version 1.0s
  */
+@Entity
 public class Area {
 
 	@Id

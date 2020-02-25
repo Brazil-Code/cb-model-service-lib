@@ -1,6 +1,7 @@
 package br.com.brazilcode.cb.libs.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import org.hibernate.annotations.Parameter;
  * @since 21 de fev de 2020 13:49:14
  * @version 1.0
  */
+@Entity
 public class Functionality {
 
 	@Id

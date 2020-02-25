@@ -1,6 +1,7 @@
 package br.com.brazilcode.cb.libs.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.Parameter;
  * @since 20 de fev de 2020 20:49:57
  * @version 1.0
  */
+@Entity
 public class Log {
 
 	@Id
