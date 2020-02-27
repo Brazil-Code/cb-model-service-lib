@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -61,6 +62,7 @@ public class User {
 
 	@NotEmpty(message = "E-mail is mandatory!")
 	@Column(length = 100)
+	@Email
 	private String email;
 
 	private String token;
