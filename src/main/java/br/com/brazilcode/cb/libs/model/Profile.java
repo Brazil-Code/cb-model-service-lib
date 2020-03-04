@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "Profile" do banco de dados.
+ * Classe responsável por mapear a tabela "profile" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 20:54:04

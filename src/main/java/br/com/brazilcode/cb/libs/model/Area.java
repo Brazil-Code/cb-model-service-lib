@@ -5,14 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "Area" do banco de dados.
+ * Classe responsável por mapear a tabela "area" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 20:39:45
@@ -29,7 +29,7 @@ public class Area {
 	private Long id;
 
 	@NotEmpty(message = "Budget reference is mandatory!")
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "id_budget", referencedColumnName = "id")
 	private Budget budget;
 
