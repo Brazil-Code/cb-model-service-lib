@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "Functionality" do banco de dados.
+ * Classe responsável por mapear a tabela "functionality" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 21 de fev de 2020 13:49:14

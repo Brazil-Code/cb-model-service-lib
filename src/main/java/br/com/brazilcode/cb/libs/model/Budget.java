@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "Budget" do banco de dados.
+ * Classe responsável por mapear a tabela "budget" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 20:43:12
