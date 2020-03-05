@@ -38,6 +38,7 @@ public class Log {
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private User user;
 
+	@Column(length = 20)
 	private String ip;
 
 	@NotEmpty(message = "Description is mandatory!")
