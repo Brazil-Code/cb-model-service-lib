@@ -18,7 +18,6 @@ public class DateUtil {
 
 	private static final String PATTERN_YYYYMMDD = "yyyyMMdd";
 	private static final String PATTERN_DDMMYYYY = "ddMMyyyy";
-
 	private static final DateTimeFormatter FORMATTER_YYYYMMDD = DateTimeFormatter.ofPattern(PATTERN_YYYYMMDD);
 	private static final DateTimeFormatter FORMATTER_DDMMYYYY = DateTimeFormatter.ofPattern(PATTERN_DDMMYYYY);
 

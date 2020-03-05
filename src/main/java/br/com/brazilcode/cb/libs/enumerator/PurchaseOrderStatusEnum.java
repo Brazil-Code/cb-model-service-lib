@@ -14,16 +14,15 @@ public enum PurchaseOrderStatusEnum {
 	REPROVED(3, "REPROVED"),
 	REVIEW(4, "REVIEW");
 
-	private long id;
-
+	private int id;
 	private String description;
 
-	private PurchaseOrderStatusEnum(long id, String description) {
+	private PurchaseOrderStatusEnum(int id, String description) {
 		this.id = id;
 		this.description = description;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

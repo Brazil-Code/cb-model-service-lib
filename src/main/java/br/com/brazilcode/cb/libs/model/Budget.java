@@ -36,10 +36,10 @@ public class Budget {
 	private String serviceType;
 
 	@NotEmpty(message = "Budgeted value is mandatory!")
-	private float budgeted;
+	private double budgeted;
 
 	@NotEmpty(message = "Effective value is mandatory!")
-	private float effective;
+	private double effective;
 
 	@NotEmpty(message = "Management account is mandatory!")
 	@Column(length = 255)
@@ -78,19 +78,19 @@ public class Budget {
 		this.serviceType = serviceType;
 	}
 
-	public float getBudgeted() {
+	public double getBudgeted() {
 		return budgeted;
 	}
 
-	public void setBudgeted(float budgeted) {
+	public void setBudgeted(double budgeted) {
 		this.budgeted = budgeted;
 	}
 
-	public float getEffective() {
+	public double getEffective() {
 		return effective;
 	}
 
-	public void setEffective(float effective) {
+	public void setEffective(double effective) {
 		this.effective = effective;
 	}
 
@@ -146,11 +146,14 @@ public class Budget {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Float.floatToIntBits(budgeted);
+		long temp;
+		temp = Double.doubleToLongBits(budgeted);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + Float.floatToIntBits(effective);
+		temp = Double.doubleToLongBits(effective);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((managementAccount == null) ? 0 : managementAccount.hashCode());
 		result = prime * result + ((serviceType == null) ? 0 : serviceType.hashCode());
@@ -168,7 +171,7 @@ public class Budget {
 		if (getClass() != obj.getClass())
 			return false;
 		Budget other = (Budget) obj;
-		if (Float.floatToIntBits(budgeted) != Float.floatToIntBits(other.budgeted))
+		if (Double.doubleToLongBits(budgeted) != Double.doubleToLongBits(other.budgeted))
 			return false;
 		if (createdAt == null) {
 			if (other.createdAt != null)
@@ -182,7 +185,7 @@ public class Budget {
 			return false;
 		if (disabled != other.disabled)
 			return false;
-		if (Float.floatToIntBits(effective) != Float.floatToIntBits(other.effective))
+		if (Double.doubleToLongBits(effective) != Double.doubleToLongBits(other.effective))
 			return false;
 		if (id == null) {
 			if (other.id != null)

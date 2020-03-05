@@ -23,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "USER" do banco de dados.
+ * Classe responsável por mapear a tabela "sys_user" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 20 de fev de 2020 19:46:28
@@ -37,7 +37,6 @@ public class User {
 	@GenericGenerator(name = "user_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
 			@Parameter(name = "sequence_name", value = "user_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
-	@Column(name = "id")
 	private Long id;
 
 	@NotEmpty(message = "Area reference is mandatory!")
