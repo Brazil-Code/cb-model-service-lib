@@ -39,7 +39,7 @@ public class PaymentOrder {
 	private Budget budget;
 
 	@NotEmpty(message = "Purchase order is mandatory!")
-	private PurchaseOrder purchaseOrder;
+	private PurchaseRequest purchaseRequest;
 
 	@NotEmpty(message = "Area is mandatory!")
 	private Area area;
@@ -84,12 +84,12 @@ public class PaymentOrder {
 		this.budget = budget;
 	}
 
-	public PurchaseOrder getPurchaseOrder() {
-		return purchaseOrder;
+	public PurchaseRequest getPurchaseOrder() {
+		return purchaseRequest;
 	}
 
-	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
-		this.purchaseOrder = purchaseOrder;
+	public void setPurchaseOrder(PurchaseRequest purchaseRequest) {
+		this.purchaseRequest = purchaseRequest;
 	}
 
 	public Area getArea() {
