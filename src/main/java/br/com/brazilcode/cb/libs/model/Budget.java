@@ -45,10 +45,6 @@ public class Budget {
 	@Column(length = 255)
 	private String managementAccount;
 
-	@NotEmpty(message = "Department is mandatory!")
-	@Column(length = 255)
-	private String department;
-
 	@NotEmpty(message = "Year is mandatory!")
 	private String year;
 
@@ -102,14 +98,6 @@ public class Budget {
 		this.managementAccount = managementAccount;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
 	public String getYear() {
 		return year;
 	}
@@ -150,7 +138,6 @@ public class Budget {
 		temp = Double.doubleToLongBits(budgeted);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
 		temp = Double.doubleToLongBits(effective);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -177,11 +164,6 @@ public class Budget {
 			if (other.createdAt != null)
 				return false;
 		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
 			return false;
 		if (disabled != other.disabled)
 			return false;

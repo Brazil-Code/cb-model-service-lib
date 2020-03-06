@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -33,18 +34,19 @@ public class PaymentOrder {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Budget is mandatory!")
-	@ManyToOne
-	@JoinColumn(name = "id_budget", referencedColumnName = "id")
-	private Budget budget;
-
-	@NotEmpty(message = "Purchase order is mandatory!")
+	@NotEmpty(message = "Purchase request is mandatory!")
+	@OneToOne
+	@JoinColumn(name = "id_purchcase_request", referencedColumnName = "id")
 	private PurchaseRequest purchaseRequest;
 
 	@NotEmpty(message = "Area is mandatory!")
+	@ManyToOne
+	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
 
 	@NotEmpty(message = "Company is mandatory!")
+	@ManyToOne
+	@JoinColumn(name = "id_company", referencedColumnName = "id")
 	private Company company;
 
 	@NotEmpty(message = "Date is mandatory!")
@@ -76,19 +78,11 @@ public class PaymentOrder {
 		this.id = id;
 	}
 
-	public Budget getBudget() {
-		return budget;
-	}
-
-	public void setBudget(Budget budget) {
-		this.budget = budget;
-	}
-
-	public PurchaseRequest getPurchaseOrder() {
+	public PurchaseRequest getPurchaseRequest() {
 		return purchaseRequest;
 	}
 
-	public void setPurchaseOrder(PurchaseRequest purchaseRequest) {
+	public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
 		this.purchaseRequest = purchaseRequest;
 	}
 
@@ -161,7 +155,6 @@ public class PaymentOrder {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + ((budget == null) ? 0 : budget.hashCode());
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
@@ -169,6 +162,7 @@ public class PaymentOrder {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + invoiceNumber;
 		result = prime * result + ((invoicePath == null) ? 0 : invoicePath.hashCode());
+		result = prime * result + ((purchaseRequest == null) ? 0 : purchaseRequest.hashCode());
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
 	}
@@ -186,11 +180,6 @@ public class PaymentOrder {
 			if (other.area != null)
 				return false;
 		} else if (!area.equals(other.area))
-			return false;
-		if (budget == null) {
-			if (other.budget != null)
-				return false;
-		} else if (!budget.equals(other.budget))
 			return false;
 		if (company == null) {
 			if (other.company != null)
@@ -220,6 +209,11 @@ public class PaymentOrder {
 			if (other.invoicePath != null)
 				return false;
 		} else if (!invoicePath.equals(other.invoicePath))
+			return false;
+		if (purchaseRequest == null) {
+			if (other.purchaseRequest != null)
+				return false;
+		} else if (!purchaseRequest.equals(other.purchaseRequest))
 			return false;
 		if (updatedAt == null) {
 			if (other.updatedAt != null)

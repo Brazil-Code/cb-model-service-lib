@@ -16,7 +16,7 @@ import br.com.brazilcode.cb.libs.model.Profile;
 public interface ProfileRepository extends PagingAndSortingRepository<Profile, Long> {
 
 	/**
-	 * Método responsável por buscar um Profile pela sua descrição.
+	 * Método responsável por buscar um Profile pela descrição informada.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param description
