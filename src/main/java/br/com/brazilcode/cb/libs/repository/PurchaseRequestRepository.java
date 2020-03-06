@@ -24,7 +24,7 @@ public interface PurchaseRequestRepository extends PagingAndSortingRepository<Pu
 	 * @param idCreateUser
 	 * @return
 	 */
-	@Query("SELECT pr FROM purchase_request pr WHERE pr.create_user = :idCreateUser")
+	@Query("SELECT pr FROM purchase_request pr WHERE pr.createUser = :idCreateUser")
 	List<PurchaseRequest> findByCreateUserId(@Param("idCreateUser") final Long idCreateUser);
 
 	/**
