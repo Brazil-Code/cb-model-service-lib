@@ -24,7 +24,7 @@ public interface PaymentOrderRepository extends PagingAndSortingRepository<Payme
 	 * @param idArea
 	 * @return
 	 */
-	@Query("SELECT po FROM payment_order po WHERE po.id_purchase_request = :idPurchaseRequest")
+	@Query("SELECT po FROM payment_order po WHERE po.purchaseRequest = :idPurchaseRequest")
 	PaymentOrder findByPurchaseRequestId(@Param("idPurchaseRequest") final Long idPurchaseRequest);
 
 	/**
@@ -34,7 +34,7 @@ public interface PaymentOrderRepository extends PagingAndSortingRepository<Payme
 	 * @param idArea
 	 * @return
 	 */
-	@Query("SELECT po FROM payment_order po WHERE po.id_area = :idArea")
+	@Query("SELECT po FROM payment_order po WHERE po.area = :idArea")
 	List<PaymentOrder> findByAreaId(@Param("idArea") final Long idArea);
 
 	/**
@@ -44,7 +44,7 @@ public interface PaymentOrderRepository extends PagingAndSortingRepository<Payme
 	 * @param idCompany
 	 * @return
 	 */
-	@Query("SELECT po FROM payment_order po WHERE po.id_company = :idCompany")
+	@Query("SELECT po FROM payment_order po WHERE po.company = :idCompany")
 	List<PaymentOrder> findByCompanyId(@Param("idCompany") final Long idCompany);
 
 }
