@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -51,10 +53,6 @@ public class PurchaseRequest {
 	@NotEmpty(message = "Status is mandatory!")
 	private int status;
 
-	@NotEmpty(message = "Product's decription is mandatory")
-	@Column(length = 100)
-	private String productDescription;
-
 	@NotEmpty(message = "Purchase requests must have at least 3 price quotations")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "purchase_request_price_quotation", joinColumns = {
@@ -62,8 +60,10 @@ public class PurchaseRequest {
 	private Set<PriceQuotation> priceQuotations = new HashSet<>();
 
 	@NotEmpty(message = "Creation date is mandatory!")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
 	public Long getId() {
@@ -106,14 +106,6 @@ public class PurchaseRequest {
 		this.status = status;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-
 	public Set<PriceQuotation> getPriceQuotations() {
 		return priceQuotations;
 	}
@@ -148,7 +140,6 @@ public class PurchaseRequest {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
 		result = prime * result + ((priceQuotations == null) ? 0 : priceQuotations.hashCode());
-		result = prime * result + ((productDescription == null) ? 0 : productDescription.hashCode());
 		result = prime * result + status;
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
@@ -192,11 +183,6 @@ public class PurchaseRequest {
 			if (other.priceQuotations != null)
 				return false;
 		} else if (!priceQuotations.equals(other.priceQuotations))
-			return false;
-		if (productDescription == null) {
-			if (other.productDescription != null)
-				return false;
-		} else if (!productDescription.equals(other.productDescription))
 			return false;
 		if (status != other.status)
 			return false;
