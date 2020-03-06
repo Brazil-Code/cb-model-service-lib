@@ -7,7 +7,7 @@ package br.com.brazilcode.cb.libs.enumerator;
  * @since 20 de fev de 2020 21:14:37
  * @version 1.0
  */
-public enum PurchaseOrderStatusEnum {
+public enum PurchaseRequestStatusEnum {
 
 	PENDING(1, "PENDING"),
 	APPROVED(2, "APPROVED"),
@@ -17,7 +17,7 @@ public enum PurchaseOrderStatusEnum {
 	private int id;
 	private String description;
 
-	private PurchaseOrderStatusEnum(int id, String description) {
+	private PurchaseRequestStatusEnum(int id, String description) {
 		this.id = id;
 		this.description = description;
 	}
