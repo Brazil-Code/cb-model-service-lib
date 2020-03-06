@@ -45,11 +45,11 @@ public class User {
 	private Area area;
 
 	@NotEmpty(message = "Username is mandatory!")
-	@Column(length = 50)
+	@Column(length = 20)
 	private String username;
 
 	@NotEmpty(message = "Password is mandatory!")
-	@Column(length = 50)
+	@Column(length = 20)
 	private String password;
 
 	@NotEmpty(message = "First name is mandatory!")

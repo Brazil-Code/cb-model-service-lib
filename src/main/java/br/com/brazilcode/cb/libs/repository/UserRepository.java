@@ -18,7 +18,7 @@ import br.com.brazilcode.cb.libs.model.User;
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
 	/**
-	 * Método responsável por buscar um usuário pelo seu username.
+	 * Método responsável por buscar um User pelo username informado.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param user
@@ -28,7 +28,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	User findByUsername(@Param("username") final String username);
 
 	/**
-	 * Método responsável por buscar um usuário por username e password.
+	 * Método responsável por buscar um User por username e password informados.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param username
@@ -39,7 +39,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	User findByUsernameAndPassword(@Param("username") final String username, @Param("password") final String password);
 
 	/**
-	 * Método responsável por buscar um usuário pelo seu e-mail.
+	 * Método responsável por buscar um User pelo e-mail informado.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param email
@@ -49,7 +49,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	User findByEmail(@Param("email") final String email);
 
 	/**
-	 * Método responsável por atualizar o token do usuário pelo seu ID.
+	 * Método responsável por atualizar o token do User pelo ID informado.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param token

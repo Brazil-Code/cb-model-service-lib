@@ -18,13 +18,13 @@ import br.com.brazilcode.cb.libs.model.Budget;
 public interface BudgetRepository extends PagingAndSortingRepository<Budget, Long> {
 
 	/**
-	 * Método responsável por buscar um Budget pelo seu department.
+	 * Método responsável por buscar todos os Budget pelo tipo de serviço informado.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
-	 * @param department
+	 * @param serviceType
 	 * @return
 	 */
-	@Query("SELECT b FROM budget b WHERE LOWER(b.department) LIKE LOWER(:department)")
-	List<Budget> findByDepartment(@Param("department") final String department);
+	@Query("SELECT b FROM budget b WHERE LOWER(b.service_type) LIKE LOWER(:serviceType)")
+	List<Budget> findByServiceType(@Param("serviceType") final String serviceType);
 
 }
