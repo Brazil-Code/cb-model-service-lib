@@ -15,6 +15,13 @@ import br.com.brazilcode.cb.libs.model.Area;
  */
 public interface AreaRepository extends PagingAndSortingRepository<Area, Long> {
 
+	/**
+	 * Método responsável por buscar uma Area pelo nome informado.
+	 *
+	 * @author Brazil Code - Gabriel Guarido
+	 * @param name
+	 * @return
+	 */
 	@Query("SELECT a FROM area a WHERE LOWER(a.name) LIKE LOWER(:name)")
 	Area findByName(@Param("name") final String name);
 
