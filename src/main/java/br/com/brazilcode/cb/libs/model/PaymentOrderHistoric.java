@@ -11,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -33,7 +35,7 @@ public class PaymentOrderHistoric {
 			@Parameter(name = "initial_value", value = "1"), @Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Payment order is mandatory!")
+	@NotNull(message = "Payment order is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_payment_order", referencedColumnName = "id")
 	private PaymentOrder paymentOrder;
@@ -41,7 +43,7 @@ public class PaymentOrderHistoric {
 	@Column(length = 255)
 	private String observation;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
@@ -118,6 +120,11 @@ public class PaymentOrderHistoric {
 		} else if (!paymentOrder.equals(other.paymentOrder))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

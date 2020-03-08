@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -37,7 +40,7 @@ public class Profile {
 	@Column(length = 50)
 	private String description;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
 	@ManyToMany
@@ -115,6 +118,11 @@ public class Profile {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

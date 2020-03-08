@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -35,30 +38,26 @@ public class Budget {
 	@Column(length = 255)
 	private String serviceType;
 
-	@NotEmpty(message = "Budgeted value is mandatory!")
+	@NotNull(message = "Budgeted value is mandatory!")
 	private double budgeted;
 
-	@NotEmpty(message = "Effective value is mandatory!")
+	@NotNull(message = "Effective value is mandatory!")
 	private double effective;
 
 	@NotEmpty(message = "Management account is mandatory!")
 	@Column(length = 255)
 	private String managementAccount;
 
-	@NotEmpty(message = "Department is mandatory!")
-	@Column(length = 255)
-	private String department;
-
 	@NotEmpty(message = "Year is mandatory!")
 	private String year;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
@@ -102,14 +101,6 @@ public class Budget {
 		this.managementAccount = managementAccount;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
 	public String getYear() {
 		return year;
 	}
@@ -150,7 +141,6 @@ public class Budget {
 		temp = Double.doubleToLongBits(budgeted);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
 		temp = Double.doubleToLongBits(effective);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -177,11 +167,6 @@ public class Budget {
 			if (other.createdAt != null)
 				return false;
 		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
 			return false;
 		if (disabled != other.disabled)
 			return false;
@@ -213,6 +198,11 @@ public class Budget {
 		} else if (!year.equals(other.year))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

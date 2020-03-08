@@ -11,7 +11,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -60,11 +63,11 @@ public class Company {
 	@Column(length = 15)
 	private String phone;
 
-	@NotEmpty(message = "Disabled flag is mandatory!")
+	@NotNull(message = "Disabled flag is mandatory!")
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -238,6 +241,11 @@ public class Company {
 		} else if (!updatedAt.equals(other.updatedAt))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

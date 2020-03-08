@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -36,7 +39,7 @@ public class PurchaseRequest {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Creation user is mandatory!")
+	@NotNull(message = "Creation user is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "create_user", referencedColumnName = "id")
 	private User createUser;
@@ -48,22 +51,20 @@ public class PurchaseRequest {
 	@Column(length = 255)
 	private String observation;
 
-	@NotEmpty(message = "Status is mandatory!")
+	@NotNull(message = "Status is mandatory!")
 	private int status;
 
-	@NotEmpty(message = "Product's decription is mandatory")
-	@Column(length = 100)
-	private String productDescription;
-
-	@NotEmpty(message = "Purchase requests must have at least 3 price quotations")
-	@ManyToMany(fetch = FetchType.EAGER)
+	@NotNull(message = "Purchase requests must have at least 3 price quotations")
+	@ManyToMany
 	@JoinTable(name = "purchase_request_price_quotation", joinColumns = {
 			@JoinColumn(name = "id_purchase_request") }, inverseJoinColumns = { @JoinColumn(name = "id_price_quotation") })
 	private Set<PriceQuotation> priceQuotations = new HashSet<>();
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
 	public Long getId() {
@@ -106,14 +107,6 @@ public class PurchaseRequest {
 		this.status = status;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
-	}
-
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
-	}
-
 	public Set<PriceQuotation> getPriceQuotations() {
 		return priceQuotations;
 	}
@@ -148,7 +141,6 @@ public class PurchaseRequest {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
 		result = prime * result + ((priceQuotations == null) ? 0 : priceQuotations.hashCode());
-		result = prime * result + ((productDescription == null) ? 0 : productDescription.hashCode());
 		result = prime * result + status;
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
@@ -193,11 +185,6 @@ public class PurchaseRequest {
 				return false;
 		} else if (!priceQuotations.equals(other.priceQuotations))
 			return false;
-		if (productDescription == null) {
-			if (other.productDescription != null)
-				return false;
-		} else if (!productDescription.equals(other.productDescription))
-			return false;
 		if (status != other.status)
 			return false;
 		if (updatedAt == null) {
@@ -206,6 +193,11 @@ public class PurchaseRequest {
 		} else if (!updatedAt.equals(other.updatedAt))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

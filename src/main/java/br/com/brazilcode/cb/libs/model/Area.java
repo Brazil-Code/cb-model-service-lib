@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -28,7 +31,7 @@ public class Area {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Budget reference is mandatory!")
+	@NotNull(message = "Budget reference is mandatory!")
 	@OneToOne
 	@JoinColumn(name = "id_budget", referencedColumnName = "id")
 	private Budget budget;
@@ -36,7 +39,7 @@ public class Area {
 	@NotEmpty(message = "Name is mandatory!")
 	private String name;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
 	public Long getId() {
@@ -109,6 +112,11 @@ public class Area {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }

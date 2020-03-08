@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +17,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -39,17 +41,17 @@ public class User {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Area reference is mandatory!")
+	@NotNull(message = "Area reference is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
 
 	@NotEmpty(message = "Username is mandatory!")
-	@Column(length = 50)
+	@Column(length = 20)
 	private String username;
 
 	@NotEmpty(message = "Password is mandatory!")
-	@Column(length = 50)
+	@Column(length = 20)
 	private String password;
 
 	@NotEmpty(message = "First name is mandatory!")
@@ -66,10 +68,10 @@ public class User {
 
 	private String token;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "user_profile", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_profile") })
 	private Set<Profile> profiles = new HashSet<>();
@@ -77,7 +79,7 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
@@ -263,6 +265,11 @@ public class User {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
 	}
 
 }
