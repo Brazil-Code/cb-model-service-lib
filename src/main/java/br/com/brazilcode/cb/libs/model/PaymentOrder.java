@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -34,36 +35,36 @@ public class PaymentOrder {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Purchase request is mandatory!")
+	@NotNull(message = "Purchase request is mandatory!")
 	@OneToOne
 	@JoinColumn(name = "id_purchcase_request", referencedColumnName = "id")
 	private PurchaseRequest purchaseRequest;
 
-	@NotEmpty(message = "Area is mandatory!")
+	@NotNull(message = "Area is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
 
-	@NotEmpty(message = "Company is mandatory!")
+	@NotNull(message = "Company is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_company", referencedColumnName = "id")
 	private Company company;
 
-	@NotEmpty(message = "Date is mandatory!")
+	@NotNull(message = "Date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
-	@NotEmpty(message = "Invoice number is mandatory!")
+	@NotNull(message = "Invoice number is mandatory!")
 	private int invoiceNumber;
 
 	@NotEmpty(message = "Invoice path is mandatory!")
 	@Column(length = 150)
 	private String invoicePath;
 
-	@NotEmpty(message = "Disabled flag is mandatory!")
+	@NotNull(message = "Disabled flag is mandatory!")
 	private boolean disabled = false;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 

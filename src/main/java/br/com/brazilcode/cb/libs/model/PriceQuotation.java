@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -31,17 +32,17 @@ public class PriceQuotation {
 	@Column(length = 255)
 	private String link;
 
-	@NotEmpty(message = "Unit value is mandatory")
+	@NotNull(message = "Unit value is mandatory")
 	private double unitValue;
 
 	@NotEmpty(message = "Purchase item is mandatory")
 	@Column(length = 100)
 	private String purchaseItem;
 
-	@NotEmpty(message = "Amount is mandatory")
+	@NotNull(message = "Amount is mandatory")
 	private int amount;
 
-	@NotEmpty(message = "Total value is mandatory")
+	@NotNull(message = "Total value is mandatory")
 	private double totalValue;
 
 	public Long getId() {
