@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -39,7 +40,7 @@ public class User {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Area reference is mandatory!")
+	@NotNull(message = "Area reference is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
@@ -66,7 +67,7 @@ public class User {
 
 	private String token;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -77,7 +78,7 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
