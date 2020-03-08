@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -38,7 +38,7 @@ public class PurchaseRequest {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "Creation user is mandatory!")
+	@NotNull(message = "Creation user is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "create_user", referencedColumnName = "id")
 	private User createUser;
@@ -50,16 +50,16 @@ public class PurchaseRequest {
 	@Column(length = 255)
 	private String observation;
 
-	@NotEmpty(message = "Status is mandatory!")
+	@NotNull(message = "Status is mandatory!")
 	private int status;
 
-	@NotEmpty(message = "Purchase requests must have at least 3 price quotations")
+	@NotNull(message = "Purchase requests must have at least 3 price quotations")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "purchase_request_price_quotation", joinColumns = {
 			@JoinColumn(name = "id_purchase_request") }, inverseJoinColumns = { @JoinColumn(name = "id_price_quotation") })
 	private Set<PriceQuotation> priceQuotations = new HashSet<>();
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 

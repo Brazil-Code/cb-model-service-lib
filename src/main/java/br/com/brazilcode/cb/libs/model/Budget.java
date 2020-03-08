@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -35,10 +36,10 @@ public class Budget {
 	@Column(length = 255)
 	private String serviceType;
 
-	@NotEmpty(message = "Budgeted value is mandatory!")
+	@NotNull(message = "Budgeted value is mandatory!")
 	private double budgeted;
 
-	@NotEmpty(message = "Effective value is mandatory!")
+	@NotNull(message = "Effective value is mandatory!")
 	private double effective;
 
 	@NotEmpty(message = "Management account is mandatory!")
@@ -48,13 +49,13 @@ public class Budget {
 	@NotEmpty(message = "Year is mandatory!")
 	private String year;
 
-	@NotEmpty(message = "Flag disabled is mandatory!")
+	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 

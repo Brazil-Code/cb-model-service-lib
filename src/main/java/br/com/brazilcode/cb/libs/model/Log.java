@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -33,7 +34,7 @@ public class Log {
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
-	@NotEmpty(message = "User reference is mandatory!")
+	@NotNull(message = "User reference is mandatory!")
 	@ManyToOne
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private User user;
@@ -45,7 +46,7 @@ public class Log {
 	@Column(length = 255)
 	private String description;
 
-	@NotEmpty(message = "Timestamp is mandatory!")
+	@NotNull(message = "Timestamp is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
 

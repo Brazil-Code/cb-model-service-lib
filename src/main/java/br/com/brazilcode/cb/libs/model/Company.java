@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -60,11 +61,11 @@ public class Company {
 	@Column(length = 15)
 	private String phone;
 
-	@NotEmpty(message = "Disabled flag is mandatory!")
+	@NotNull(message = "Disabled flag is mandatory!")
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotEmpty(message = "Creation date is mandatory!")
+	@NotNull(message = "Creation date is mandatory!")
 	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
