@@ -38,13 +38,13 @@ public interface PaymentOrderRepository extends PagingAndSortingRepository<Payme
 	List<PaymentOrder> findByAreaId(@Param("idArea") final Long idArea);
 
 	/**
-	 * Método responsável por buscar todos os PaymentOrder do ID da Company informado.
+	 * Método responsável por buscar todos os PaymentOrder do ID do Supplier informado.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
-	 * @param idCompany
+	 * @param idSupplier
 	 * @return
 	 */
-	@Query("SELECT po FROM payment_order po WHERE po.company = :idCompany")
-	List<PaymentOrder> findByCompanyId(@Param("idCompany") final Long idCompany);
+	@Query("SELECT po FROM payment_order po WHERE po.supplier = :idSupplier")
+	List<PaymentOrder> findBySupplierId(@Param("idSupplier") final Long idSupplier);
 
 }
