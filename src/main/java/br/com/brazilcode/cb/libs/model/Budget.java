@@ -35,7 +35,7 @@ public class Budget {
 	private Long id;
 
 	@NotEmpty(message = "Service type is mandatory!")
-	@Column(length = 255)
+	@Column(length = 100, name = "service")
 	private String serviceType;
 
 	@NotNull(message = "Budgeted value is mandatory!")
@@ -45,10 +45,11 @@ public class Budget {
 	private double effective;
 
 	@NotEmpty(message = "Management account is mandatory!")
-	@Column(length = 255)
+	@Column(length = 100)
 	private String managementAccount;
 
 	@NotEmpty(message = "Year is mandatory!")
+	@Column(length = 4)
 	private String year;
 
 	@NotNull(message = "Flag disabled is mandatory!")

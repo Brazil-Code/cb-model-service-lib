@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,7 +52,6 @@ public class User {
 	private String username;
 
 	@NotEmpty(message = "Password is mandatory!")
-	@Column(length = 20)
 	private String password;
 
 	@NotEmpty(message = "First name is mandatory!")
@@ -71,7 +71,7 @@ public class User {
 	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_profile", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_profile") })
 	private Set<Profile> profiles = new HashSet<>();

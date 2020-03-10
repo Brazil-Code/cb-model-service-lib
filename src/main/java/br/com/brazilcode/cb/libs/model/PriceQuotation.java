@@ -38,7 +38,7 @@ public class PriceQuotation {
 	private double unitValue;
 
 	@NotEmpty(message = "Purchase item is mandatory")
-	@Column(length = 100)
+	@Column(length = 150)
 	private String purchaseItem;
 
 	@NotNull(message = "Amount is mandatory")

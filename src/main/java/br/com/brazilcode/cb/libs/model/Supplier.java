@@ -19,19 +19,19 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 /**
- * Classe responsável por mapear a tabela "company" do banco de dados.
+ * Classe responsável por mapear a tabela "supplier" do banco de dados.
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 29 de fev de 2020 18:20:15
  * @version 1.0
  */
-@Entity(name = "company")
-public class Company {
+@Entity(name = "supplier")
+public class Supplier {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
-	@GenericGenerator(name = "company_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
-			@Parameter(name = "sequence_name", value = "company_seq"), @Parameter(name = "initial_value", value = "1"),
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_seq")
+	@GenericGenerator(name = "supplier_seq", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+			@Parameter(name = "sequence_name", value = "supplier_seq"), @Parameter(name = "initial_value", value = "1"),
 			@Parameter(name = "increment_size", value = "1") })
 	private Long id;
 
@@ -47,7 +47,7 @@ public class Company {
 	private String fantasyName;
 
 	@NotEmpty(message = "State registration is mandatory!")
-	@Column(length = 50)
+	@Column(length = 30)
 	private String stateRegistration;
 
 	@NotEmpty(message = "Responsible is mandatory!")
@@ -187,7 +187,7 @@ public class Company {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Company other = (Company) obj;
+		Supplier other = (Supplier) obj;
 		if (cnpj == null) {
 			if (other.cnpj != null)
 				return false;

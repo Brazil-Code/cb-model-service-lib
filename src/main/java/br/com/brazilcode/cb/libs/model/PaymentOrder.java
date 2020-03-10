@@ -47,10 +47,10 @@ public class PaymentOrder {
 	@JoinColumn(name = "id_area", referencedColumnName = "id")
 	private Area area;
 
-	@NotNull(message = "Company is mandatory!")
+	@NotNull(message = "Supplier is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "id_company", referencedColumnName = "id")
-	private Company company;
+	@JoinColumn(name = "id_supplier", referencedColumnName = "id")
+	private Supplier supplier;
 
 	@NotNull(message = "Date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -97,12 +97,12 @@ public class PaymentOrder {
 		this.area = area;
 	}
 
-	public Company getCompany() {
-		return company;
+	public Supplier getSupplier() {
+		return supplier;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
 	}
 
 	public Date getDate() {
@@ -158,7 +158,7 @@ public class PaymentOrder {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((supplier == null) ? 0 : supplier.hashCode());
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + (disabled ? 1231 : 1237);
@@ -184,10 +184,10 @@ public class PaymentOrder {
 				return false;
 		} else if (!area.equals(other.area))
 			return false;
-		if (company == null) {
-			if (other.company != null)
+		if (supplier == null) {
+			if (other.supplier != null)
 				return false;
-		} else if (!company.equals(other.company))
+		} else if (!supplier.equals(other.supplier))
 			return false;
 		if (createdAt == null) {
 			if (other.createdAt != null)

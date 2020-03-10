@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,11 +42,11 @@ public class PurchaseRequest {
 
 	@NotNull(message = "Creation user is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "create_user", referencedColumnName = "id")
+	@JoinColumn(name = "id_create_user", referencedColumnName = "id")
 	private User createUser;
 
 	@ManyToOne
-	@JoinColumn(name = "approval_user", referencedColumnName = "id")
+	@JoinColumn(name = "id_approval_user", referencedColumnName = "id")
 	private User approvalUser;
 
 	@Column(length = 255)
@@ -55,7 +56,7 @@ public class PurchaseRequest {
 	private int status;
 
 	@NotNull(message = "Purchase requests must have at least 3 price quotations")
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "purchase_request_price_quotation", joinColumns = {
 			@JoinColumn(name = "id_purchase_request") }, inverseJoinColumns = { @JoinColumn(name = "id_price_quotation") })
 	private Set<PriceQuotation> priceQuotations = new HashSet<>();
