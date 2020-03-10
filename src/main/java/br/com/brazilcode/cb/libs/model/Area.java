@@ -1,5 +1,6 @@
 package br.com.brazilcode.cb.libs.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +38,7 @@ public class Area {
 	private Budget budget;
 
 	@NotEmpty(message = "Name is mandatory!")
+	@Column(length = 50)
 	private String name;
 
 	@NotNull(message = "Flag disabled is mandatory!")
