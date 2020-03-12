@@ -41,6 +41,7 @@ public class Log {
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	private User user;
 
+	@NotEmpty
 	@Column(length = 20)
 	private String ip;
 
