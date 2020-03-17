@@ -18,7 +18,7 @@ import org.hibernate.annotations.Parameter;
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 5 de mar de 2020 18:35:17
- * @version 1.0
+ * @version 1.1
  */
 @Entity(name = "price_quotation")
 public class PriceQuotation {
@@ -37,9 +37,8 @@ public class PriceQuotation {
 	@NotNull(message = "Unit value is mandatory")
 	private double unitValue;
 
-	@NotEmpty(message = "Purchase item is mandatory")
-	@Column(length = 150)
-	private String purchaseItem;
+	@Column(length = 255)
+	private String observation;
 
 	@NotNull(message = "Amount is mandatory")
 	private int amount;
@@ -71,12 +70,12 @@ public class PriceQuotation {
 		this.unitValue = unitValue;
 	}
 
-	public String getPurchaseItem() {
-		return purchaseItem;
+	public String getObservation() {
+		return observation;
 	}
 
-	public void setPurchaseItem(String purchaseItem) {
-		this.purchaseItem = purchaseItem;
+	public void setObservation(String observation) {
+		this.observation = observation;
 	}
 
 	public int getAmount() {
@@ -102,7 +101,7 @@ public class PriceQuotation {
 		result = prime * result + amount;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((link == null) ? 0 : link.hashCode());
-		result = prime * result + ((purchaseItem == null) ? 0 : purchaseItem.hashCode());
+		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(totalValue);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -132,10 +131,10 @@ public class PriceQuotation {
 				return false;
 		} else if (!link.equals(other.link))
 			return false;
-		if (purchaseItem == null) {
-			if (other.purchaseItem != null)
+		if (observation == null) {
+			if (other.observation != null)
 				return false;
-		} else if (!purchaseItem.equals(other.purchaseItem))
+		} else if (!observation.equals(other.observation))
 			return false;
 		if (Double.doubleToLongBits(totalValue) != Double.doubleToLongBits(other.totalValue))
 			return false;

@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -28,7 +29,7 @@ import org.hibernate.annotations.Parameter;
  *
  * @author Brazil Code - Gabriel Guarido
  * @since 3 de mar de 2020 21:12:32
- * @version 1.0
+ * @version 1.1
  */
 @Entity(name = "purchase_request")
 public class PurchaseRequest {
@@ -49,8 +50,9 @@ public class PurchaseRequest {
 	@JoinColumn(name = "id_approval_user", referencedColumnName = "id")
 	private User approvalUser;
 
-	@Column(length = 255)
-	private String observation;
+	@NotEmpty(message = "Purchase item is mandatory")
+	@Column(length = 150)
+	private String purchaseItem;
 
 	@NotNull(message = "Status is mandatory!")
 	private int status;
@@ -92,12 +94,12 @@ public class PurchaseRequest {
 		this.approvalUser = approvalUser;
 	}
 
-	public String getObservation() {
-		return observation;
+	public String getPurchaseItem() {
+		return purchaseItem;
 	}
 
-	public void setObservation(String observation) {
-		this.observation = observation;
+	public void setPurchaseItem(String purchaseItem) {
+		this.purchaseItem = purchaseItem;
 	}
 
 	public int getStatus() {
@@ -140,8 +142,8 @@ public class PurchaseRequest {
 		result = prime * result + ((createUser == null) ? 0 : createUser.hashCode());
 		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((observation == null) ? 0 : observation.hashCode());
 		result = prime * result + ((priceQuotations == null) ? 0 : priceQuotations.hashCode());
+		result = prime * result + ((purchaseItem == null) ? 0 : purchaseItem.hashCode());
 		result = prime * result + status;
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		return result;
@@ -176,15 +178,15 @@ public class PurchaseRequest {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (observation == null) {
-			if (other.observation != null)
-				return false;
-		} else if (!observation.equals(other.observation))
-			return false;
 		if (priceQuotations == null) {
 			if (other.priceQuotations != null)
 				return false;
 		} else if (!priceQuotations.equals(other.priceQuotations))
+			return false;
+		if (purchaseItem == null) {
+			if (other.purchaseItem != null)
+				return false;
+		} else if (!purchaseItem.equals(other.purchaseItem))
 			return false;
 		if (status != other.status)
 			return false;
