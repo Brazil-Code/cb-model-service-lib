@@ -11,6 +11,6 @@ public class ApiResponseConstants {
 
 	public static final String INTERNAL_SERVER_ERROR_RESPONSE = "Unexpected Internal Error";
 	public static final String CREATED_RESPONSE = "Registered successfully";
-	public static final String VALIDATION_ERROR_RESPONSE = "Validation Error: ";
+	public static final String VALIDATION_ERROR_RESPONSE = "Validation Error";
 
 }
