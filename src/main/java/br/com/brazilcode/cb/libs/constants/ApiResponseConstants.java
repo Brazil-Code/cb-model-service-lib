@@ -10,7 +10,8 @@ package br.com.brazilcode.cb.libs.constants;
 public class ApiResponseConstants {
 
 	public static final String INTERNAL_SERVER_ERROR_RESPONSE = "Unexpected Internal Error";
-	public static final String CREATED_RESPONSE = "Registered successfully";
+	public static final String CREATED_RESPONSE = "Registered Successfully";
 	public static final String VALIDATION_ERROR_RESPONSE = "Validation Error";
+	public static final String REST_INTEGRATION_ERROR = "Unexpected error on trying to comunicate with external REST API";
 
 }
