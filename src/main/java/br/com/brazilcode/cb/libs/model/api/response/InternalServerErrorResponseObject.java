@@ -1,4 +1,4 @@
-package br.com.brazilcode.cb.libs.model.response;
+package br.com.brazilcode.cb.libs.model.api.response;
 
 import static br.com.brazilcode.cb.libs.constants.ApiResponseConstants.INTERNAL_SERVER_ERROR_RESPONSE;
 
