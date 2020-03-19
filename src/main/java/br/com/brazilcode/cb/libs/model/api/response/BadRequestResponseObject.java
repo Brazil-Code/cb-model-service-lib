@@ -1,4 +1,4 @@
-package br.com.brazilcode.cb.libs.model.response;
+package br.com.brazilcode.cb.libs.model.api.response;
 
 import java.util.Calendar;
 
