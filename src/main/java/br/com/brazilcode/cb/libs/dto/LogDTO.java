@@ -1,6 +1,7 @@
 package br.com.brazilcode.cb.libs.dto;
 
 import br.com.brazilcode.cb.libs.model.Log;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Classe de Data Transfer Object para {@link Log}.
@@ -11,8 +12,13 @@ import br.com.brazilcode.cb.libs.model.Log;
  */
 public class LogDTO {
 
+	@ApiModelProperty(value = "Creation User ID")
 	private Long user;
+
+	@ApiModelProperty(value = "Log's description")
 	private String description;
+
+	@ApiModelProperty(value = "Log's creation date/time")
 	private String timestamp;
 
 	public LogDTO(Long user, String description, String timestamp) {
