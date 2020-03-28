@@ -2,6 +2,8 @@ package br.com.brazilcode.cb.libs.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -24,8 +26,8 @@ public interface PurchaseRequestRepository extends PagingAndSortingRepository<Pu
 	 * @param idCreateUser
 	 * @return
 	 */
-	@Query("SELECT pr FROM purchase_request pr WHERE pr.createUser = :idCreateUser")
-	List<PurchaseRequest> findByCreateUserId(@Param("idCreateUser") final Long idCreateUser);
+	@Query("SELECT pr FROM purchase_request pr WHERE pr.createUser.id = :idCreateUser")
+	Page<PurchaseRequest> findByCreateUserId(@Param("idCreateUser") final Long idCreateUser, Pageable pageable);
 
 	/**
 	 * Método responsável por buscar todos os PurchaseRequest pelo status informado.
