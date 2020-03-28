@@ -9,12 +9,12 @@ package br.com.brazilcode.cb.libs.enumerator;
  */
 public enum LogActivityTypeEnum {
 
-	CREATE("CREATED"),
-	SEARCH("SEARCHED"),
-	DELETE("DELETED"),
-	UPDATE("UPDATED"),
-	LOG_IN("LOGED IN"),
-	LOG_OUT("LOGED OUT");
+	CREATE("CADASTROU"),
+	SEARCH("BUSCOU"),
+	DELETE("DELETOU"),
+	UPDATE("ATUALIZOU"),
+	LOG_IN("EFETUOU LOG IN"),
+	LOG_OUT("EFETUOU LOG OUT");
 
 	private String description;
 
