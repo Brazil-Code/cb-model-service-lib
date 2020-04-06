@@ -13,4 +13,4 @@ Available as a **jar library** for all the other modules of the project.
 ## Release Notes
 | Starting Date | Version |
 |---|---|
-| Feb 27 | 1.6.1 |
+| Feb 27 2020 | 1.6.1 |
