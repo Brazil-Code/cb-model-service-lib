@@ -1,9 +1,16 @@
 # cb-model-service-lib
-## Model's Service Library
+Library of models/repositories that will be availabe for the microservices of the Clean Budget project.
+Available as a **jar library** for all the other modules of the project.
 
-- Author: Gabriel Guarido de Oliveira
-- Created at: 02/19/2020
+## Technologies
+* Java 8
+* Spring Framework (Boot, Security, Data JPA, ect)
+* Modular architecture
 
----
+## Developers
+1. Gabriel Guarido
 
-Library of models/repositories that will be availabe for the microservices of the project <b>Clean Budget</b>
+## Release Notes
+| Starting Date | Version |
+|---|---|
+| Feb 27 | 1.6.1 |
