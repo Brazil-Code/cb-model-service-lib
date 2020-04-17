@@ -34,7 +34,7 @@ public class Supplier {
 	private Long id;
 
 	@NotEmpty(message = "Cnpj is mandatory!")
-	@Column(length = 15)
+	@Column(length = 15, unique = true)
 	private String cnpj;
 
 	@NotEmpty(message = "Corporate name is mandatory!")

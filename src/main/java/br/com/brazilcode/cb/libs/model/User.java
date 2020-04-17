@@ -46,7 +46,7 @@ public class User {
 	private Area area;
 
 	@NotEmpty(message = "Username is mandatory!")
-	@Column(length = 20)
+	@Column(length = 20, unique = true)
 	private String username;
 
 	@NotEmpty(message = "Password is mandatory!")
@@ -60,7 +60,7 @@ public class User {
 	private String lastName;
 
 	@NotEmpty(message = "E-mail is mandatory!")
-	@Column(length = 100)
+	@Column(length = 100, unique = true)
 	@Email
 	private String email;
 
