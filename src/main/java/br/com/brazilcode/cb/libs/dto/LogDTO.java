@@ -18,14 +18,10 @@ public class LogDTO {
 	@ApiModelProperty(value = "Log's description")
 	private String description;
 
-	@ApiModelProperty(value = "Log's creation date/time")
-	private String timestamp;
-
-	public LogDTO(Long user, String description, String timestamp) {
+	public LogDTO(Long user, String description) {
 		super();
 		this.user = user;
 		this.description = description;
-		this.timestamp = timestamp;
 	}
 
 	public LogDTO() {
@@ -46,14 +42,6 @@ public class LogDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }
