@@ -13,8 +13,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -36,7 +34,7 @@ public class Supplier {
 	private Long id;
 
 	@NotEmpty(message = "Cnpj is mandatory!")
-	@Column(length = 15)
+	@Column(length = 15, unique = true)
 	private String cnpj;
 
 	@NotEmpty(message = "Corporate name is mandatory!")
@@ -245,7 +243,9 @@ public class Supplier {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
+		return "Supplier [id=" + id + ", cnpj=" + cnpj + ", corporateName=" + corporateName + ", fantasyName=" + fantasyName
+				+ ", stateRegistration=" + stateRegistration + ", responsible=" + responsible + ", email=" + email + ", phone="
+				+ phone + ", disabled=" + disabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 }

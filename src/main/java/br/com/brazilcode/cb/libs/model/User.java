@@ -20,8 +20,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -48,7 +46,7 @@ public class User {
 	private Area area;
 
 	@NotEmpty(message = "Username is mandatory!")
-	@Column(length = 20)
+	@Column(length = 20, unique = true)
 	private String username;
 
 	@NotEmpty(message = "Password is mandatory!")
@@ -62,7 +60,7 @@ public class User {
 	private String lastName;
 
 	@NotEmpty(message = "E-mail is mandatory!")
-	@Column(length = 100)
+	@Column(length = 100, unique = true)
 	@Email
 	private String email;
 
@@ -269,7 +267,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, true);
+		return "User [id=" + id + ", area=" + area + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", token=" + token + ", disabled=" + disabled
+				+ ", profiles=" + profiles + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + "]";
 	}
 
 }

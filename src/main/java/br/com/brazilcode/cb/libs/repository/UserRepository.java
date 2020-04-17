@@ -1,5 +1,7 @@
 package br.com.brazilcode.cb.libs.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -25,7 +27,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @return
 	 */
 	@Query("SELECT u FROM sys_user u WHERE LOWER(u.username) LIKE LOWER(:username) AND u.disabled = false")
-	User findByUsername(@Param("username") final String username);
+	Optional<User> findByUsername(@Param("username") final String username);
 
 	/**
 	 * Método responsável por buscar um User por username e password informados.
@@ -46,7 +48,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	 * @return
 	 */
 	@Query("SELECT u FROM sys_user u WHERE LOWER(u.email) LIKE LOWER(:email) AND u.disabled = false")
-	User findByEmail(@Param("email") final String email);
+	Optional<User> findByEmail(@Param("email") final String email);
 
 	/**
 	 * Método responsável por atualizar o token do User pelo ID informado.

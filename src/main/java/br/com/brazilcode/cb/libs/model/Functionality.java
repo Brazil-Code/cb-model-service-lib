@@ -38,7 +38,7 @@ public class Functionality {
 	@Column(length = 150)
 	private String uri;
 
-	private int action;
+	private Integer action;
 
 	@NotNull(message = "Flag disabled is mandatory!")
 	private boolean disabled = false;
