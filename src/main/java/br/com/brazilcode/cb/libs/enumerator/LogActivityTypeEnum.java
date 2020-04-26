@@ -1,5 +1,8 @@
 package br.com.brazilcode.cb.libs.enumerator;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * Class responsible for enumerating the descriptions of the types of activities for recording the Audit LOG.
  *
@@ -7,6 +10,8 @@ package br.com.brazilcode.cb.libs.enumerator;
  * @since Apr 26, 2020 12:39:50 AM
  * @version 1.0
  */
+@Getter
+@AllArgsConstructor
 public enum LogActivityTypeEnum {
 
 	CREATE("CADASTROU"),
@@ -17,13 +22,5 @@ public enum LogActivityTypeEnum {
 	LOG_OUT("EFETUOU LOG OUT");
 
 	private String description;
-
-	private LogActivityTypeEnum(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
 
 }

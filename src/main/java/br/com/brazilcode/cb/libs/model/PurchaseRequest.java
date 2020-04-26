@@ -23,9 +23,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -35,7 +36,8 @@ import lombok.ToString;
  * @since Apr 25, 2020 11:19:28 PM
  * @version 2.0
  */
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -81,69 +83,5 @@ public class PurchaseRequest {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public User getCreateUser() {
-		return createUser;
-	}
-
-	public void setCreateUser(User createUser) {
-		this.createUser = createUser;
-	}
-
-	public User getApprovalUser() {
-		return approvalUser;
-	}
-
-	public void setApprovalUser(User approvalUser) {
-		this.approvalUser = approvalUser;
-	}
-
-	public String getPurchaseItem() {
-		return purchaseItem;
-	}
-
-	public void setPurchaseItem(String purchaseItem) {
-		this.purchaseItem = purchaseItem;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Set<PriceQuotation> getPriceQuotations() {
-		return priceQuotations;
-	}
-
-	public void setPriceQuotations(Set<PriceQuotation> priceQuotations) {
-		this.priceQuotations = priceQuotations;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 }

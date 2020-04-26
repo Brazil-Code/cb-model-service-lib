@@ -18,9 +18,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -30,7 +31,8 @@ import lombok.ToString;
  * @since Apr 25, 2020 11:19:41 PM
  * @version 2.0
  */
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -57,37 +59,5 @@ public class Profile {
 	@JoinTable(name = "profile_functionality", joinColumns = { @JoinColumn(name = "id_profile") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_functionality") })
 	private Set<Functionality> functionalities = new HashSet<>();
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
-	public Set<Functionality> getFunctionalities() {
-		return functionalities;
-	}
-
-	public void setFunctionalities(Set<Functionality> functionalities) {
-		this.functionalities = functionalities;
-	}
 
 }
