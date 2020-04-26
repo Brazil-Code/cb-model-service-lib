@@ -17,7 +17,7 @@ Available as a **jar library** for all the other modules of the project.
 ## :calendar: Release Notes
 | :rocket: Kick Off | Version |
 |---|---|
-| Feb 27 2020 | 1.6.1 |
+| Feb 27 2020 | 1.4.0 |
 
 ## :memo: License
 This project is under MIT license. Check the file [LICENSE](LICENSE) for more information.
