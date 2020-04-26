@@ -13,13 +13,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "area" do banco de dados.
+ * Class responsible to map the table "area" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 20:39:45
- * @version 1.0s
+ * @since Apr 25, 2020 11:21:19 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "area")
 public class Area {
 
@@ -32,14 +43,15 @@ public class Area {
 
 	@NotNull(message = "Budget reference is mandatory!")
 	@OneToOne
-	@JoinColumn(name = "id_budget", referencedColumnName = "id")
+	@JoinColumn(name = "id_budget", referencedColumnName = "id", nullable = false)
 	private Budget budget;
 
 	@NotEmpty(message = "Name is mandatory!")
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String name;
 
 	@NotNull(message = "Flag disabled is mandatory!")
+	@Column(nullable = false)
 	private boolean disabled = false;
 
 	public Long getId() {
@@ -72,51 +84,6 @@ public class Area {
 
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((budget == null) ? 0 : budget.hashCode());
-		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Area other = (Area) obj;
-		if (budget == null) {
-			if (other.budget != null)
-				return false;
-		} else if (!budget.equals(other.budget))
-			return false;
-		if (disabled != other.disabled)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Area [id=" + id + ", budget=" + budget + ", name=" + name + ", disabled=" + disabled + "]";
 	}
 
 }

@@ -6,43 +6,46 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import br.com.brazilcode.cb.libs.model.Area;
 import br.com.brazilcode.cb.libs.model.PaymentOrder;
+import br.com.brazilcode.cb.libs.model.PurchaseRequest;
+import br.com.brazilcode.cb.libs.model.Supplier;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 6 de mar de 2020 08:59:37
- * @version 1.0
+ * @since Apr 26, 2020 12:02:37 AM
+ * @version 1.1
  */
 public interface PaymentOrderRepository extends PagingAndSortingRepository<PaymentOrder, Long> {
 
 	/**
-	 * Método responsável por buscar um PaymentOrder pelo ID do PurchaseRequest informado.
+	 * Method responsible for searching for a {@link PaymentOrder} by the given '{@link PurchaseRequest} ID'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
-	 * @param idArea
+	 * @param idPurchaseRequest
 	 * @return
 	 */
 	@Query("SELECT po FROM payment_order po WHERE po.purchaseRequest = :idPurchaseRequest")
 	PaymentOrder findByPurchaseRequestId(@Param("idPurchaseRequest") final Long idPurchaseRequest);
 
 	/**
-	 * Método responsável por buscar todos os PaymentOrder do ID da Area informado.
+	 * Method responsible for searching for {@link PaymentOrder}s by the given '{@link Area} ID'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param idArea
-	 * @return
+	 * @return list with all {@link PaymentOrder}s found
 	 */
 	@Query("SELECT po FROM payment_order po WHERE po.area = :idArea")
 	List<PaymentOrder> findByAreaId(@Param("idArea") final Long idArea);
 
 	/**
-	 * Método responsável por buscar todos os PaymentOrder do ID do Supplier informado.
+	 * Method responsible for searching for {@link PaymentOrder}s by the given '{@link Supplier} ID'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param idSupplier
-	 * @return
+	 * @return list with all {@link PaymentOrder}s found
 	 */
 	@Query("SELECT po FROM payment_order po WHERE po.supplier = :idSupplier")
 	List<PaymentOrder> findBySupplierId(@Param("idSupplier") final Long idSupplier);

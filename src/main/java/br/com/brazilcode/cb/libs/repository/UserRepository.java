@@ -11,26 +11,26 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.brazilcode.cb.libs.model.User;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 21:21:27
- * @version 1.0
+ * @since Apr 26, 2020 12:03:24 AM
+ * @version 1.1
  */
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
 	/**
-	 * Método responsável por buscar um User pelo username informado.
+	 * Method responsible for searching for a {@link User} by the given 'username'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
-	 * @param user
+	 * @param username
 	 * @return
 	 */
 	@Query("SELECT u FROM sys_user u WHERE LOWER(u.username) LIKE LOWER(:username) AND u.disabled = false")
 	Optional<User> findByUsername(@Param("username") final String username);
 
 	/**
-	 * Método responsável por buscar um User por username e password informados.
+	 * Method responsible for searching for a {@link User} by the given 'username' and 'password'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param username
@@ -41,7 +41,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	User findByUsernameAndPassword(@Param("username") final String username, @Param("password") final String password);
 
 	/**
-	 * Método responsável por buscar um User pelo e-mail informado.
+	 * Method responsible for searching for a {@link User} by the given 'email'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param email
@@ -51,7 +51,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 	Optional<User> findByEmail(@Param("email") final String email);
 
 	/**
-	 * Método responsável por atualizar o token do User pelo ID informado.
+	 * Method responsible for updating {@link User}'s token by the given 'ID'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param token

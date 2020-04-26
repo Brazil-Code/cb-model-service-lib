@@ -1,12 +1,17 @@
 package br.com.brazilcode.cb.libs.exception;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Classe responsável por configurar uma exceção personalizada para Base.
+ * Class responsible to configure an personalized Base Exception.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 25 de fev de 2020 16:11:41
- * @version 1.0
+ * @since Apr 26, 2020 12:00:27 AM
+ * @version 1.1
  */
+@Getter
+@Setter
 public class BaseException extends Exception {
 
 	private static final long serialVersionUID = 1875180635321082742L;
@@ -29,30 +34,6 @@ public class BaseException extends Exception {
 
 	public BaseException() {
 		super();
-	}
-
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getInstruction() {
-		return instruction;
-	}
-
-	public void setInstruction(String instruction) {
-		this.instruction = instruction;
 	}
 
 }

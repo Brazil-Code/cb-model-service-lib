@@ -4,6 +4,9 @@ import static br.com.brazilcode.cb.libs.constants.ApiResponseConstants.*;
 
 import java.util.Calendar;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Classe responsável por mapear um objeto de retorno para APIs que realizam operações de cadastro (caso ocorra com sucesso).
  *
@@ -11,6 +14,15 @@ import java.util.Calendar;
  * @since 17 de mar de 2020 09:51:06
  * @version 1.0
  */
+/**
+ * Class responsible to map an return object to APIs that perform registration operations (if successful).
+ *
+ * @author Brazil Code - Gabriel Guarido
+ * @since Apr 25, 2020 11:32:16 PM
+ * @version 2.0
+ */
+@Getter
+@Setter
 public class CreatedResponseObject {
 
 	private String httpStatus = "201";
@@ -21,26 +33,6 @@ public class CreatedResponseObject {
 	public CreatedResponseObject(Long idCreated) {
 		super();
 		this.idCreated = idCreated;
-	}
-
-	public Long getIdCreated() {
-		return idCreated;
-	}
-
-	public void setIdCreated(Long idCreated) {
-		this.idCreated = idCreated;
-	}
-
-	public String getHttpStatus() {
-		return httpStatus;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Calendar getDate() {
-		return date;
 	}
 
 }

@@ -2,13 +2,18 @@ package br.com.brazilcode.cb.libs.model.api.response;
 
 import java.util.Calendar;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Classe responsável por mapear um objeto de retorno para APIs (caso ocorra um BadRequest).
+ * Class responsible to map an API's return object (in case of BadRequest).
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 17 de mar de 2020 09:55:24
- * @version 1.0
+ * @since Apr 25, 2020 11:30:42 PM
+ * @version 2.0
  */
+@Getter
+@Setter
 public class BadRequestResponseObject {
 
 	private String httpStatus = "400";
@@ -18,22 +23,6 @@ public class BadRequestResponseObject {
 	public BadRequestResponseObject(String description) {
 		super();
 		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getHttpStatus() {
-		return httpStatus;
-	}
-
-	public Calendar getDate() {
-		return date;
 	}
 
 }

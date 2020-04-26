@@ -4,30 +4,22 @@ import static br.com.brazilcode.cb.libs.constants.ApiResponseConstants.REST_INTE
 
 import java.util.Calendar;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Classe responsável por mapear um objeto de retorno para APIs caso ocorra um erro durante a comunicação com alguma API REST
- * externa.
+ * Class responsible to map an object to APIs if an error occurs during a communication with an external REST API.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 17 de mar de 2020 23:22:42
+ * @since Apr 25, 2020 11:35:31 PM
  * @version 1.0
  */
+@Getter
+@Setter
 public class RestIntegrationErrorResponse {
 
 	private String httpStatus = "500";
 	private String description = REST_INTEGRATION_ERROR;
 	private Calendar date = Calendar.getInstance();
-
-	public String getHttpStatus() {
-		return httpStatus;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Calendar getDate() {
-		return date;
-	}
 
 }

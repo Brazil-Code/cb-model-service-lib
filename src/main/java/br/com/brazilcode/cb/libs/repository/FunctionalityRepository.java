@@ -5,11 +5,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import br.com.brazilcode.cb.libs.model.Functionality;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 6 de mar de 2020 08:58:41
- * @version 1.0
+ * @since Apr 26, 2020 12:01:59 AM
+ * @version 1.1
  */
 public interface FunctionalityRepository extends PagingAndSortingRepository<Functionality, Long> {
 
