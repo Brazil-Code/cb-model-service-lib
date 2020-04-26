@@ -1,6 +1,8 @@
 package br.com.brazilcode.cb.libs.enumerator;
 
 import br.com.brazilcode.cb.libs.model.PurchaseRequest;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * Class responsible for enumerating all the {@link PurchaseRequest} status.
@@ -9,6 +11,8 @@ import br.com.brazilcode.cb.libs.model.PurchaseRequest;
  * @since Apr 26, 2020 12:40:34 AM
  * @version 1.1
  */
+@Getter
+@AllArgsConstructor
 public enum PurchaseRequestStatusEnum {
 
 	PENDING(1, "PENDENTE"),
@@ -18,18 +22,5 @@ public enum PurchaseRequestStatusEnum {
 
 	private int id;
 	private String description;
-
-	private PurchaseRequestStatusEnum(int id, String description) {
-		this.id = id;
-		this.description = description;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
 
 }

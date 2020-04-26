@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import br.com.brazilcode.cb.libs.model.Log;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -14,11 +18,12 @@ import lombok.ToString;
  * @version 1.0
  */
 @ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LogDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2034350004364829160L;
 
 	@ApiModelProperty(value = "Creation User ID")
@@ -26,31 +31,5 @@ public class LogDTO implements Serializable {
 
 	@ApiModelProperty(value = "Log's description")
 	private String description;
-
-	public LogDTO(Long user, String description) {
-		super();
-		this.user = user;
-		this.description = description;
-	}
-
-	public LogDTO() {
-		super();
-	}
-
-	public Long getUser() {
-		return user;
-	}
-
-	public void setUser(Long user) {
-		this.user = user;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 }

@@ -1,11 +1,11 @@
 package br.com.brazilcode.cb.libs.constants;
 
 /**
- * Classe responsável por guardar mensagens padrão para erros da aplicação.
+ * Class responsible for saving standard messages for application errors.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 8 de mar de 2020 16:38:48
- * @version 1.1
+ * @since Apr 26, 2020 2:44:00 AM
+ * @version 1.0
  */
 public class ApiResponseConstants {
 

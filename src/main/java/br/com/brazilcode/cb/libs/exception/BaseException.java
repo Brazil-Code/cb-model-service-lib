@@ -1,6 +1,8 @@
 package br.com.brazilcode.cb.libs.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -12,6 +14,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BaseException extends Exception {
 
 	private static final long serialVersionUID = 1875180635321082742L;
@@ -20,20 +24,9 @@ public class BaseException extends Exception {
 	private String message;
 	private String instruction = "Please contact support staff!";
 
-	public BaseException(String errorCode, String message, String instruction) {
-		super();
-		this.errorCode = errorCode;
-		this.message = message;
-		this.instruction = instruction;
-	}
-
 	public BaseException(String message) {
 		super();
 		this.message = message;
-	}
-
-	public BaseException() {
-		super();
 	}
 
 }

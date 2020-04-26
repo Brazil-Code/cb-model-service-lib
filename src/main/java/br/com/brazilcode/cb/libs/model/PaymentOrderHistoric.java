@@ -17,9 +17,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -29,7 +30,8 @@ import lombok.ToString;
  * @since Apr 25, 2020 11:20:09 PM
  * @version 2.0
  */
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -56,37 +58,5 @@ public class PaymentOrderHistoric {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	private Date createdAt;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public PaymentOrder getPaymentOrder() {
-		return paymentOrder;
-	}
-
-	public void setPaymentOrder(PaymentOrder paymentOrder) {
-		this.paymentOrder = paymentOrder;
-	}
-
-	public String getObservation() {
-		return observation;
-	}
-
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
 
 }
