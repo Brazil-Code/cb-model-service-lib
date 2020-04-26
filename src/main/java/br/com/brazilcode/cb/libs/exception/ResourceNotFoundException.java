@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Classe responsável por configurar uma Exception para RecursoNaoEncontrado que será lançada em Runtime.
+ * Class responsible to configure an Exception for Resources Not Found that will be thrown in Runtime.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 21:12:53
- * @version 1.0
+ * @since Apr 25, 2020 11:59:07 PM
+ * @version 1.1
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException {

@@ -9,20 +9,20 @@ import org.springframework.data.repository.query.Param;
 import br.com.brazilcode.cb.libs.model.Budget;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 21:41:15
- * @version 1.0
+ * @since Apr 26, 2020 12:01:50 AM
+ * @version 1.1
  */
 public interface BudgetRepository extends PagingAndSortingRepository<Budget, Long> {
 
 	/**
-	 * Método responsável por buscar todos os Budget pelo tipo de serviço informado.
+	 * Method responsible for searching for {@link Budget}s by the given 'service type'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param serviceType
-	 * @return
+	 * @return 
 	 */
 	@Query("SELECT b FROM budget b WHERE LOWER(b.serviceType) LIKE LOWER(:serviceType)")
 	List<Budget> findByServiceType(@Param("serviceType") final String serviceType);

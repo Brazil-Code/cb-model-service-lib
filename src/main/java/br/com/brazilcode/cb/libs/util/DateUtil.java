@@ -8,10 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
- * Classe utilitária para formatação de datas.
+ * Utility class for custom data formatting.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 21 de fev de 2020 08:39:54
+ * @since Apr 26, 2020 12:22:36 AM
  * @version 1.0
  */
 public class DateUtil {
@@ -22,7 +22,7 @@ public class DateUtil {
 	private static final DateTimeFormatter FORMATTER_DDMMYYYY = DateTimeFormatter.ofPattern(PATTERN_DDMMYYYY);
 
 	/**
-	 * Método responsável por converter um objeto do tipo LocalDate para Date.
+	 * Method responsible for converting a {@link LocalDate} object into {@link Date}.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param localDate
@@ -38,7 +38,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * Método responsável por converter um objeto do tipo Date para LocalDate.
+	 * Method responsible for converting a {@link Date} object into {@link LocalDate}.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param date
@@ -54,11 +54,11 @@ public class DateUtil {
 	}
 
 	/**
-	 * Método responsável por converter um objeto do tipo Date em String com o seguite pattern: 'yyyyMMdd'.
+	 * Method responsible for converting a {@link Date} object into a {@link String} with the pattern: 'yyyyMMdd'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param date
-	 * @return
+	 * @return 'yyyyMMdd'
 	 */
 	public static String convertDateToStringPatternYyyyMmDd(Date date) {
 		String returnDate = null;
@@ -70,11 +70,11 @@ public class DateUtil {
 	}
 
 	/**
-	 * Método responsável por converter um objeto do tipo Date em String com o seguite pattern: 'ddMMyyyy'.
+	 * Method responsible for converting a {@link Date} object into a {@link String} with the patter: 'ddMMyyyy'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param date
-	 * @return
+	 * @return 'ddMMyyyy'
 	 */
 	public static String convertDateToStringPatternDdMmYyyy(Date date) {
 		String returnDate = null;
@@ -86,7 +86,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * Método responsável por retornar um objeto do tipo Date com a data atual.
+	 * Method responsible for returning a {@link Date} object with the current date.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @return

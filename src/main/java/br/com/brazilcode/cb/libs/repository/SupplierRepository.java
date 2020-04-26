@@ -7,16 +7,16 @@ import org.springframework.data.repository.query.Param;
 import br.com.brazilcode.cb.libs.model.Supplier;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 6 de mar de 2020 08:58:56
- * @version 1.0
+ * @since Apr 26, 2020 12:03:17 AM
+ * @version 1.1
  */
 public interface SupplierRepository extends PagingAndSortingRepository<Supplier, Long> {
 
 	/**
-	 * Método responsável por buscar um Supplier pelo e-mail informado.
+	 * Method responsible for searching for a {@link Supplier} by the given 'email'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param email
@@ -26,7 +26,7 @@ public interface SupplierRepository extends PagingAndSortingRepository<Supplier,
 	Supplier findByEmail(@Param("email") final String email);
 
 	/**
-	 * Método responsável por buscar uma Supplier pelo cnpj informado.
+	 * Method responsible for searching for a {@link Supplier} by the given 'cnpj'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param cnpj

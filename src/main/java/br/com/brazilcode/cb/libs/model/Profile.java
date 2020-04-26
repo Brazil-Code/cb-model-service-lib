@@ -17,13 +17,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "profile" do banco de dados.
+ * Class responsible to map the table "profile" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 20:54:04
- * @version 1.0
+ * @since Apr 25, 2020 11:19:41 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "profile")
 public class Profile {
 
@@ -35,10 +46,11 @@ public class Profile {
 	private Long id;
 
 	@NotEmpty(message = "Description is mandatory!")
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String description;
 
 	@NotNull(message = "Flag disabled is mandatory!")
+	@Column(nullable = false)
 	private boolean disabled = false;
 
 	@ManyToMany
@@ -76,52 +88,6 @@ public class Profile {
 
 	public void setFunctionalities(Set<Functionality> functionalities) {
 		this.functionalities = functionalities;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + ((functionalities == null) ? 0 : functionalities.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Profile other = (Profile) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (disabled != other.disabled)
-			return false;
-		if (functionalities == null) {
-			if (other.functionalities != null)
-				return false;
-		} else if (!functionalities.equals(other.functionalities))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Profile [id=" + id + ", description=" + description + ", disabled=" + disabled + ", functionalities="
-				+ functionalities + "]";
 	}
 
 }

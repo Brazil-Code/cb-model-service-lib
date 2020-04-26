@@ -4,13 +4,18 @@ import static br.com.brazilcode.cb.libs.constants.ApiResponseConstants.UPDATED_R
 
 import java.util.Calendar;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * Classe responsável por mapear um objeto de retorno para APIs que realizam operações de atualização (caso ocorra com sucesso).
+ * Class responsible to map a return object to APIs that perform update operations (if successful).
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 29 de mar de 2020 14:36:10
- * @version 1.0
+ * @since Apr 25, 2020 11:37:35 PM
+ * @version 2.0
  */
+@Getter
+@Setter
 public class UpdatedResponseObject {
 
 	private String httpStatus = "200";
@@ -21,38 +26,6 @@ public class UpdatedResponseObject {
 	public UpdatedResponseObject(Long idUpdated) {
 		super();
 		this.idUpdated = idUpdated;
-	}
-
-	public String getHttpStatus() {
-		return httpStatus;
-	}
-
-	public void setHttpStatus(String httpStatus) {
-		this.httpStatus = httpStatus;
-	}
-
-	public Long getIdUpdated() {
-		return idUpdated;
-	}
-
-	public void setIdUpdated(Long idUpdated) {
-		this.idUpdated = idUpdated;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Calendar getDate() {
-		return date;
-	}
-
-	public void setDate(Calendar date) {
-		this.date = date;
 	}
 
 }

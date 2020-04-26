@@ -7,16 +7,16 @@ import org.springframework.data.repository.query.Param;
 import br.com.brazilcode.cb.libs.model.Profile;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 21 de fev de 2020 08:28:13
- * @version 1.0
+ * @since Apr 26, 2020 12:02:55 AM
+ * @version 1.1
  */
 public interface ProfileRepository extends PagingAndSortingRepository<Profile, Long> {
 
 	/**
-	 * Método responsável por buscar um Profile pela descrição informada.
+	 * Method responsible for searching for a {@link Profile} by the given 'description'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param description

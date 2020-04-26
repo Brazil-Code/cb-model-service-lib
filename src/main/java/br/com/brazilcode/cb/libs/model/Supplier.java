@@ -16,13 +16,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "supplier" do banco de dados.
+ * Class responsible to map the table "supplier" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 29 de fev de 2020 18:20:15
- * @version 1.0
+ * @since Apr 25, 2020 11:19:09 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "supplier")
 public class Supplier {
 
@@ -34,38 +45,40 @@ public class Supplier {
 	private Long id;
 
 	@NotEmpty(message = "Cnpj is mandatory!")
-	@Column(length = 15, unique = true)
+	@Column(length = 15, unique = true, nullable = false)
 	private String cnpj;
 
 	@NotEmpty(message = "Corporate name is mandatory!")
-	@Column(length = 150)
+	@Column(length = 150, nullable = false)
 	private String corporateName;
 
 	@Column(length = 50)
 	private String fantasyName;
 
 	@NotEmpty(message = "State registration is mandatory!")
-	@Column(length = 30)
+	@Column(length = 30, nullable = false)
 	private String stateRegistration;
 
 	@NotEmpty(message = "Responsible is mandatory!")
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String responsible;
 
 	@NotEmpty(message = "E-mail is mandatory!")
-	@Column(length = 150)
+	@Column(length = 150, nullable = false)
 	@Email
 	private String email;
 
 	@NotEmpty(message = "Phone is mandatory!")
-	@Column(length = 15)
+	@Column(length = 15, nullable = false)
 	private String phone;
 
 	@NotNull(message = "Disabled flag is mandatory!")
+	@Column(nullable = false)
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull(message = "Creation date is mandatory!")
+	@Column(nullable = false)
 	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -157,95 +170,6 @@ public class Supplier {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-		result = prime * result + ((corporateName == null) ? 0 : corporateName.hashCode());
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((fantasyName == null) ? 0 : fantasyName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((responsible == null) ? 0 : responsible.hashCode());
-		result = prime * result + ((stateRegistration == null) ? 0 : stateRegistration.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Supplier other = (Supplier) obj;
-		if (cnpj == null) {
-			if (other.cnpj != null)
-				return false;
-		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		if (corporateName == null) {
-			if (other.corporateName != null)
-				return false;
-		} else if (!corporateName.equals(other.corporateName))
-			return false;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (disabled != other.disabled)
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (fantasyName == null) {
-			if (other.fantasyName != null)
-				return false;
-		} else if (!fantasyName.equals(other.fantasyName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (responsible == null) {
-			if (other.responsible != null)
-				return false;
-		} else if (!responsible.equals(other.responsible))
-			return false;
-		if (stateRegistration == null) {
-			if (other.stateRegistration != null)
-				return false;
-		} else if (!stateRegistration.equals(other.stateRegistration))
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Supplier [id=" + id + ", cnpj=" + cnpj + ", corporateName=" + corporateName + ", fantasyName=" + fantasyName
-				+ ", stateRegistration=" + stateRegistration + ", responsible=" + responsible + ", email=" + email + ", phone="
-				+ phone + ", disabled=" + disabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 }

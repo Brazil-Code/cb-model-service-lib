@@ -18,13 +18,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "payment_order" do banco de dados.
+ * Class responsible to map the table "payment_order" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 29 de fev de 2020 18:31:44
- * @version 1.0
+ * @since Apr 25, 2020 11:20:22 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "payment_order")
 public class PaymentOrder {
 
@@ -37,35 +48,39 @@ public class PaymentOrder {
 
 	@NotNull(message = "Purchase request is mandatory!")
 	@OneToOne
-	@JoinColumn(name = "id_purchcase_request", referencedColumnName = "id")
+	@JoinColumn(name = "id_purchcase_request", referencedColumnName = "id", nullable = false)
 	private PurchaseRequest purchaseRequest;
 
 	@NotNull(message = "Area is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "id_area", referencedColumnName = "id")
+	@JoinColumn(name = "id_area", referencedColumnName = "id", nullable = false)
 	private Area area;
 
 	@NotNull(message = "Supplier is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "id_supplier", referencedColumnName = "id")
+	@JoinColumn(name = "id_supplier", referencedColumnName = "id", nullable = false)
 	private Supplier supplier;
 
 	@NotNull(message = "Date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date date;
 
 	@NotNull(message = "Invoice number is mandatory!")
+	@Column(nullable = false)
 	private int invoiceNumber;
 
 	@NotEmpty(message = "Invoice path is mandatory!")
-	@Column(length = 150)
+	@Column(length = 150, nullable = false)
 	private String invoicePath;
 
 	@NotNull(message = "Disabled flag is mandatory!")
+	@Column(nullable = false)
 	private boolean disabled = false;
 
 	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -149,86 +164,6 @@ public class PaymentOrder {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + ((supplier == null) ? 0 : supplier.hashCode());
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + (disabled ? 1231 : 1237);
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + invoiceNumber;
-		result = prime * result + ((invoicePath == null) ? 0 : invoicePath.hashCode());
-		result = prime * result + ((purchaseRequest == null) ? 0 : purchaseRequest.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PaymentOrder other = (PaymentOrder) obj;
-		if (area == null) {
-			if (other.area != null)
-				return false;
-		} else if (!area.equals(other.area))
-			return false;
-		if (supplier == null) {
-			if (other.supplier != null)
-				return false;
-		} else if (!supplier.equals(other.supplier))
-			return false;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (disabled != other.disabled)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (invoiceNumber != other.invoiceNumber)
-			return false;
-		if (invoicePath == null) {
-			if (other.invoicePath != null)
-				return false;
-		} else if (!invoicePath.equals(other.invoicePath))
-			return false;
-		if (purchaseRequest == null) {
-			if (other.purchaseRequest != null)
-				return false;
-		} else if (!purchaseRequest.equals(other.purchaseRequest))
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "PaymentOrder [id=" + id + ", purchaseRequest=" + purchaseRequest + ", area=" + area + ", supplier=" + supplier
-				+ ", date=" + date + ", invoiceNumber=" + invoiceNumber + ", invoicePath=" + invoicePath + ", disabled="
-				+ disabled + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 }

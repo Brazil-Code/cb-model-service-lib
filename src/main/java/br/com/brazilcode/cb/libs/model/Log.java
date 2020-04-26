@@ -17,13 +17,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "log" do banco de dados.
+ * Class responsible to map the table "log" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 20:49:57
- * @version 1.0
+ * @since Apr 25, 2020 11:20:35 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "log")
 public class Log {
 
@@ -36,19 +47,20 @@ public class Log {
 
 	@NotNull(message = "User reference is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "id_user", referencedColumnName = "id")
+	@JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
 	private User user;
 
 	@NotEmpty
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String ip;
 
 	@NotEmpty(message = "Description is mandatory!")
-	@Column(length = 255)
+	@Column(length = 255, nullable = false)
 	private String description;
 
 	@NotNull(message = "Timestamp is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date timestamp;
 
 	public Long getId() {
@@ -89,61 +101,6 @@ public class Log {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((ip == null) ? 0 : ip.hashCode());
-		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Log other = (Log) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (ip == null) {
-			if (other.ip != null)
-				return false;
-		} else if (!ip.equals(other.ip))
-			return false;
-		if (timestamp == null) {
-			if (other.timestamp != null)
-				return false;
-		} else if (!timestamp.equals(other.timestamp))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Log [id=" + id + ", user=" + user + ", ip=" + ip + ", description=" + description + ", timestamp=" + timestamp
-				+ "]";
 	}
 
 }
