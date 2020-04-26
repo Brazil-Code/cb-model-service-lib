@@ -14,9 +14,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -26,7 +27,8 @@ import lombok.ToString;
  * @since Apr 25, 2020 11:21:19 PM
  * @version 2.0
  */
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -53,37 +55,5 @@ public class Area {
 	@NotNull(message = "Flag disabled is mandatory!")
 	@Column(nullable = false)
 	private boolean disabled = false;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Budget getBudget() {
-		return budget;
-	}
-
-	public void setBudget(Budget budget) {
-		this.budget = budget;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
 
 }

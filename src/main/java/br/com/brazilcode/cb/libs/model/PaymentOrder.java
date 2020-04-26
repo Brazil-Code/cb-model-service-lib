@@ -19,9 +19,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -31,7 +32,8 @@ import lombok.ToString;
  * @since Apr 25, 2020 11:20:22 PM
  * @version 2.0
  */
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -85,85 +87,5 @@ public class PaymentOrder {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public PurchaseRequest getPurchaseRequest() {
-		return purchaseRequest;
-	}
-
-	public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
-		this.purchaseRequest = purchaseRequest;
-	}
-
-	public Area getArea() {
-		return area;
-	}
-
-	public void setArea(Area area) {
-		this.area = area;
-	}
-
-	public Supplier getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getInvoiceNumber() {
-		return invoiceNumber;
-	}
-
-	public void setInvoiceNumber(int invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
-
-	public String getInvoicePath() {
-		return invoicePath;
-	}
-
-	public void setInvoicePath(String invoicePath) {
-		this.invoicePath = invoicePath;
-	}
-
-	public boolean isDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 }
