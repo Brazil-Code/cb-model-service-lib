@@ -1,10 +1,10 @@
 package br.com.brazilcode.cb.libs.enumerator;
 
 /**
- * Classe responsável por enumerar as descrições dos tipos de atividade para gravação de LOG de Auditoria.
+ * Class responsible for enumerating the descriptions of the types of activities for recording the Audit LOG.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 19 de mar de 2020 01:16:58
+ * @since Apr 26, 2020 12:39:50 AM
  * @version 1.0
  */
 public enum LogActivityTypeEnum {

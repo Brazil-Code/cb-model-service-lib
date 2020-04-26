@@ -2,31 +2,24 @@ package br.com.brazilcode.cb.libs.model.api.response;
 
 import static br.com.brazilcode.cb.libs.constants.ApiResponseConstants.INTERNAL_SERVER_ERROR_RESPONSE;
 
-import java.util.Calendar;;
+import java.util.Calendar;
+
+import lombok.Getter;
+import lombok.Setter;;
 
 /**
- * Classe responsável por mapear um objeto de retorno para APIs caso ocorra um erro interno.
+ * Class responsible to map map an API's return object (in case of internal error).
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 17 de mar de 2020 09:59:31
- * @version 1.0
+ * @since Apr 25, 2020 11:34:33 PM
+ * @version 2.0
  */
+@Getter
+@Setter
 public class InternalServerErrorResponseObject {
 
 	private String httpStatus = "500";
 	private String description = INTERNAL_SERVER_ERROR_RESPONSE;
 	private Calendar date = Calendar.getInstance();
-
-	public String getHttpStatus() {
-		return httpStatus;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Calendar getDate() {
-		return date;
-	}
 
 }

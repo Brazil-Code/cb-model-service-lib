@@ -22,13 +22,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "purchase_order" do banco de dados.
+ * Class responsible to map the table "purchase_request" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 3 de mar de 2020 21:12:32
- * @version 1.1
+ * @since Apr 25, 2020 11:19:28 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Entity(name = "purchase_request")
 public class PurchaseRequest {
 
@@ -41,7 +52,7 @@ public class PurchaseRequest {
 
 	@NotNull(message = "Creation user is mandatory!")
 	@ManyToOne
-	@JoinColumn(name = "id_create_user", referencedColumnName = "id")
+	@JoinColumn(name = "id_create_user", referencedColumnName = "id", nullable = false)
 	private User createUser;
 
 	@ManyToOne
@@ -49,20 +60,23 @@ public class PurchaseRequest {
 	private User approvalUser;
 
 	@NotEmpty(message = "Purchase item is mandatory")
-	@Column(length = 150)
+	@Column(length = 150, nullable = false)
 	private String purchaseItem;
 
 	@NotNull(message = "Status is mandatory!")
+	@Column(nullable = false)
 	private int status;
 
 	@NotNull(message = "Purchase requests must have at least 3 price quotations")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "purchase_request_price_quotation", joinColumns = {
-			@JoinColumn(name = "id_purchase_request") }, inverseJoinColumns = { @JoinColumn(name = "id_price_quotation") })
+			@JoinColumn(name = "id_purchase_request", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_price_quotation", nullable = false) })
 	private Set<PriceQuotation> priceQuotations = new HashSet<>();
 
 	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -130,77 +144,6 @@ public class PurchaseRequest {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((approvalUser == null) ? 0 : approvalUser.hashCode());
-		result = prime * result + ((createUser == null) ? 0 : createUser.hashCode());
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((priceQuotations == null) ? 0 : priceQuotations.hashCode());
-		result = prime * result + ((purchaseItem == null) ? 0 : purchaseItem.hashCode());
-		result = prime * result + status;
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PurchaseRequest other = (PurchaseRequest) obj;
-		if (approvalUser == null) {
-			if (other.approvalUser != null)
-				return false;
-		} else if (!approvalUser.equals(other.approvalUser))
-			return false;
-		if (createUser == null) {
-			if (other.createUser != null)
-				return false;
-		} else if (!createUser.equals(other.createUser))
-			return false;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (priceQuotations == null) {
-			if (other.priceQuotations != null)
-				return false;
-		} else if (!priceQuotations.equals(other.priceQuotations))
-			return false;
-		if (purchaseItem == null) {
-			if (other.purchaseItem != null)
-				return false;
-		} else if (!purchaseItem.equals(other.purchaseItem))
-			return false;
-		if (status != other.status)
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "PurchaseRequest [id=" + id + ", createUser=" + createUser + ", approvalUser=" + approvalUser + ", purchaseItem="
-				+ purchaseItem + ", status=" + status + ", priceQuotations=" + priceQuotations + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
 	}
 
 }

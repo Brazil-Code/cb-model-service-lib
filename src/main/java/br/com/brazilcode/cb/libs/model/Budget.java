@@ -15,13 +15,24 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
- * Classe responsável por mapear a tabela "budget" do banco de dados.
+ * Class responsible to map the table "budget" on database.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 20:43:12
- * @version 1.0
+ * @since Apr 25, 2020 11:21:01 PM
+ * @version 2.0
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString(exclude = { "budgeted", "effective" })
 @Entity(name = "budget")
 public class Budget {
 
@@ -33,24 +44,27 @@ public class Budget {
 	private Long id;
 
 	@NotEmpty(message = "Service type is mandatory!")
-	@Column(length = 100, name = "service")
+	@Column(length = 100, name = "service", nullable = false)
 	private String serviceType;
 
 	@NotNull(message = "Budgeted value is mandatory!")
+	@Column(nullable = false)
 	private double budgeted;
 
 	@NotNull(message = "Effective value is mandatory!")
+	@Column(nullable = false)
 	private double effective;
 
 	@NotEmpty(message = "Management account is mandatory!")
-	@Column(length = 100)
+	@Column(length = 100, nullable = false)
 	private String managementAccount;
 
 	@NotEmpty(message = "Year is mandatory!")
-	@Column(length = 4)
+	@Column(length = 4, nullable = false)
 	private String year;
 
 	@NotNull(message = "Flag disabled is mandatory!")
+	@Column(nullable = false)
 	private boolean disabled = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -58,6 +72,7 @@ public class Budget {
 
 	@NotNull(message = "Creation date is mandatory!")
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date createdAt;
 
 	public Long getId() {
@@ -130,80 +145,6 @@ public class Budget {
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(budgeted);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + (disabled ? 1231 : 1237);
-		temp = Double.doubleToLongBits(effective);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((managementAccount == null) ? 0 : managementAccount.hashCode());
-		result = prime * result + ((serviceType == null) ? 0 : serviceType.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		result = prime * result + ((year == null) ? 0 : year.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Budget other = (Budget) obj;
-		if (Double.doubleToLongBits(budgeted) != Double.doubleToLongBits(other.budgeted))
-			return false;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		} else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (disabled != other.disabled)
-			return false;
-		if (Double.doubleToLongBits(effective) != Double.doubleToLongBits(other.effective))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (managementAccount == null) {
-			if (other.managementAccount != null)
-				return false;
-		} else if (!managementAccount.equals(other.managementAccount))
-			return false;
-		if (serviceType == null) {
-			if (other.serviceType != null)
-				return false;
-		} else if (!serviceType.equals(other.serviceType))
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		if (year == null) {
-			if (other.year != null)
-				return false;
-		} else if (!year.equals(other.year))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Budget [id=" + id + ", serviceType=" + serviceType + ", budgeted=" + budgeted + ", effective=" + effective
-				+ ", managementAccount=" + managementAccount + ", year=" + year + ", disabled=" + disabled + ", updatedAt="
-				+ updatedAt + ", createdAt=" + createdAt + "]";
 	}
 
 }

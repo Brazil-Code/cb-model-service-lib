@@ -9,28 +9,30 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import br.com.brazilcode.cb.libs.model.PurchaseRequest;
+import br.com.brazilcode.cb.libs.model.User;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 6 de mar de 2020 09:39:46
- * @version 1.0
+ * @since Apr 26, 2020 12:03:06 AM
+ * @version 1.1
  */
 public interface PurchaseRequestRepository extends PagingAndSortingRepository<PurchaseRequest, Long> {
 
 	/**
-	 * Método responsável por buscar todos os PurchaseRequest pelo ID do usuário de criação informado.
+	 * Method responsible for searching for paged {@link PurchaseRequest}s by the given 'Creation {@link User}'s ID'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param idCreateUser
+	 * @param pageable
 	 * @return
 	 */
 	@Query("SELECT pr FROM purchase_request pr WHERE pr.createUser.id = :idCreateUser")
 	Page<PurchaseRequest> findByCreateUserId(@Param("idCreateUser") final Long idCreateUser, Pageable pageable);
 
 	/**
-	 * Método responsável por buscar todos os PurchaseRequest pelo status informado.
+	 * Method responsible for searching for {@link PurchaseRequest} by the given 'status'.
 	 *
 	 * @author Brazil Code - Gabriel Guarido
 	 * @param status

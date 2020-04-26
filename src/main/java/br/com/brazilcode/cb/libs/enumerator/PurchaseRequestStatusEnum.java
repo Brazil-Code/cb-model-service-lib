@@ -1,18 +1,20 @@
 package br.com.brazilcode.cb.libs.enumerator;
 
+import br.com.brazilcode.cb.libs.model.PurchaseRequest;
+
 /**
- * Classe responsável por enumerar os status de PurchaseOrder.
+ * Class responsible for enumerating all the {@link PurchaseRequest} status.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 20 de fev de 2020 21:14:37
- * @version 1.0
+ * @since Apr 26, 2020 12:40:34 AM
+ * @version 1.1
  */
 public enum PurchaseRequestStatusEnum {
 
-	PENDING(1, "PENDING"),
-	APPROVED(2, "APPROVED"),
-	REPROVED(3, "REPROVED"),
-	REVIEW(4, "REVIEW");
+	PENDING(1, "PENDENTE"),
+	APPROVED(2, "APROVADO"),
+	REPROVED(3, "REPROVADO"),
+	REVIEW(4, "REVISÃO");
 
 	private int id;
 	private String description;

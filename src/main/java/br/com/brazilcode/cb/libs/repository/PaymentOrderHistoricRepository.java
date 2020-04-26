@@ -5,11 +5,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import br.com.brazilcode.cb.libs.model.PaymentOrderHistoric;
 
 /**
- * Classe responsável por realizar as operações de persistência de entidade.
+ * Class responsible for performing entity persistence operations.
  *
  * @author Brazil Code - Gabriel Guarido
- * @since 6 de mar de 2020 09:20:33
- * @version 1.0
+ * @since Apr 26, 2020 12:02:26 AM
+ * @version 1.1
  */
 public interface PaymentOrderHistoricRepository extends PagingAndSortingRepository<PaymentOrderHistoric, Long> {
 
