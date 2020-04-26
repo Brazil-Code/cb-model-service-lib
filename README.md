@@ -8,7 +8,7 @@ Available as a **jar library** for all the other modules of the project.
 
 ## :computer: Technologies
 * Java 8
-* Spring Framework (Boot, Security, Data JPA, ect)
+* Spring Framework (Boot, Data JPA, etc)
 * Modular architecture
 
 ## :alien: Developers
